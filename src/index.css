@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Font có đầy đủ glyph tiếng Việt (dựng sẵn dấu), tránh lỗi dấu bị tách rời chữ */
+@theme {
+  --font-serif: "Noto Serif", "Times New Roman", "DejaVu Serif", serif;
+  --font-sans: "Be Vietnam Pro", "Segoe UI", Roboto, "DejaVu Sans", Arial, sans-serif;
+  --font-mono: "Noto Sans Mono", "DejaVu Sans Mono", Consolas, Menlo, monospace;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
