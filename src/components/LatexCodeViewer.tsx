@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LATEX_SECTIONS } from '../data/latexSource';
+import { LATEX_SECTIONS, type LatexSectionItem } from '../data/latexSource';
 import {
   Check,
   Copy,
@@ -14,16 +14,25 @@ import {
 interface LatexCodeViewerProps {
   activeSectionId: string;
   onSelectSection: (id: string) => void;
+  sections?: LatexSectionItem[];
+  chapterTag?: string; // ví dụ: 'Chương 17' | 'Chương 18'
+  pageRange?: string; // ví dụ: '226 – 233' | '234 – 243'
+  downloadPrefix?: string; // ví dụ: 'Cambridge_Chem_Ch17' | 'Cambridge_Chem_Ch18'
 }
 
 export const LatexCodeViewer: React.FC<LatexCodeViewerProps> = ({
   activeSectionId,
   onSelectSection,
+  sections,
+  chapterTag = 'Chương 17',
+  pageRange = '226 – 233',
+  downloadPrefix = 'Cambridge_Chem_Ch17',
 }) => {
   const [copied, setCopied] = useState(false);
 
+  const SECTIONS = sections && sections.length ? sections : LATEX_SECTIONS;
   const currentSection =
-    LATEX_SECTIONS.find((s) => s.id === activeSectionId) || LATEX_SECTIONS[0];
+    SECTIONS.find((s) => s.id === activeSectionId) || SECTIONS[0];
 
   const handleCopy = async () => {
     try {
@@ -51,10 +60,10 @@ export const LatexCodeViewer: React.FC<LatexCodeViewerProps> = ({
     a.href = url;
     a.download =
       currentSection.id === 'full'
-        ? 'Cambridge_Chem_Ch17_Trang226_233_VI.tex'
+        ? `${downloadPrefix}_Trang${pageRange.replace(/[^0-9]+/g, '_')}_VI.tex`
         : currentSection.id === 'full-solutions'
-        ? 'Cambridge_Chem_Ch17_Trang226_233_KemDapAn_VI.tex'
-        : `Cambridge_Chem_${currentSection.id}_VI.tex`;
+        ? `${downloadPrefix}_Trang${pageRange.replace(/[^0-9]+/g, '_')}_KemDapAn_VI.tex`
+        : `${downloadPrefix}_${currentSection.id}_VI.tex`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -103,14 +112,14 @@ export const LatexCodeViewer: React.FC<LatexCodeViewerProps> = ({
               Chuẩn biên dịch Overleaf / TeXLive / MiKTeX (Tiếng Việt UTF-8)
             </div>
             <h2 className="text-lg sm:text-xl font-bold text-white">
-              Mã nguồn LaTeX Hoàn Chỉnh (Trang 226 – 233)
+              Mã nguồn LaTeX Hoàn Chỉnh ({chapterTag}, Trang {pageRange})
             </h2>
             <p className="text-xs sm:text-sm text-stone-300 max-w-3xl">
               Đã tích hợp đầy đủ các gói <code className="text-amber-200">tcolorbox</code>,{' '}
               <code className="text-amber-200">multicol</code>,{' '}
               <code className="text-amber-200">chemfig</code>,{' '}
               <code className="text-amber-200">mhchem</code> và hình vẽ vector{' '}
-              <code className="text-amber-200">TikZ</code> tự động cho toàn bộ Hình 17.1 – 17.8 (biên dịch chạy ngay không lo lỗi thiếu file ảnh ngoài).
+              <code className="text-amber-200">TikZ</code> tự động cho toàn bộ hình vẽ của chương (biên dịch chạy ngay không lo lỗi thiếu file ảnh ngoài).
             </p>
           </div>
 
@@ -167,7 +176,7 @@ export const LatexCodeViewer: React.FC<LatexCodeViewerProps> = ({
           Chọn phần mã LaTeX cần xem hoặc sao chép:
         </div>
         <div className="flex flex-wrap gap-1.5">
-          {LATEX_SECTIONS.map((sec) => {
+          {SECTIONS.map((sec) => {
             const active = sec.id === currentSection.id;
             return (
               <button
