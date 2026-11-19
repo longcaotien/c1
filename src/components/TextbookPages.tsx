@@ -18,7 +18,7 @@ interface QuestionBoxProps {
   showSolutionsGlobal?: boolean;
 }
 
-const QuestionBox: React.FC<QuestionBoxProps> = ({
+export const QuestionBox: React.FC<QuestionBoxProps> = ({
   number,
   children,
   solution,
@@ -66,7 +66,7 @@ interface CalloutBoxProps {
   children: React.ReactNode;
 }
 
-const CalloutBox: React.FC<CalloutBoxProps> = ({ title, children }) => (
+export const CalloutBox: React.FC<CalloutBoxProps> = ({ title, children }) => (
   <div className="my-4 rounded-md overflow-hidden border border-[#eebbb7] bg-[#f8d7d4] font-sans shadow-xs">
     <div className="bg-[#dd3645] text-white font-bold text-xs uppercase tracking-wide px-3.5 py-2">
       {title}
@@ -85,7 +85,7 @@ interface PageWrapperProps {
   children: React.ReactNode;
 }
 
-const PageWrapper: React.FC<PageWrapperProps> = ({
+export const PageWrapper: React.FC<PageWrapperProps> = ({
   pageNumber,
   side,
   onViewPageLatex,
