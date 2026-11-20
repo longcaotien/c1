@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { TextbookPages } from './components/TextbookPages';
 import { TextbookPages18 } from './components/TextbookPages18';
+import { TextbookPages13 } from './components/TextbookPages13';
 import { LatexCodeViewer } from './components/LatexCodeViewer';
 import { StudyExtras18 } from './components/StudyExtras18';
+import { StudyExtras13 } from './components/StudyExtras13';
 import { FULL_LATEX_DOCUMENT } from './data/latexSource';
 import { LATEX_SECTIONS_18, FULL_LATEX_DOCUMENT_18 } from './data/latexSource18';
+import { LATEX_SECTIONS_13, FULL_LATEX_DOCUMENT_13 } from './data/latexSource13';
 import {
   BookOpen,
   Code2,
@@ -20,7 +23,18 @@ import {
 } from 'lucide-react';
 
 type ViewMode = 'split' | 'preview' | 'latex' | 'study';
-type Chapter = '17' | '18';
+type Chapter = '13' | '17' | '18';
+
+const PAGE_TABS_13 = [
+  { id: 'all', label: 'Tất cả (180–186)' },
+  { id: 'p180', label: 'Trang 180' },
+  { id: 'p181', label: 'Trang 181' },
+  { id: 'p182', label: 'Trang 182' },
+  { id: 'p183', label: 'Trang 183' },
+  { id: 'p184', label: 'Trang 184' },
+  { id: 'p185', label: 'Trang 185' },
+  { id: 'p186', label: 'Trang 186' },
+];
 
 const PAGE_TABS_17 = [
   { id: 'all', label: 'Tất cả (226–233)' },
@@ -49,15 +63,16 @@ const PAGE_TABS_18 = [
 ];
 
 export function App() {
-  const [chapter, setChapter] = useState<Chapter>('18');
+  const [chapter, setChapter] = useState<Chapter>('13');
   const [viewMode, setViewMode] = useState<ViewMode>('split');
   const [selectedPageFilter, setSelectedPageFilter] = useState<string>('all');
   const [activeLatexSection, setActiveLatexSection] = useState<string>('full');
   const [showSolutionsGlobal, setShowSolutionsGlobal] = useState<boolean>(false);
   const [copiedFull, setCopiedFull] = useState<boolean>(false);
 
-  const PAGE_TABS = chapter === '17' ? PAGE_TABS_17 : PAGE_TABS_18;
-  const fullLatex = chapter === '17' ? FULL_LATEX_DOCUMENT : FULL_LATEX_DOCUMENT_18;
+  const PAGE_TABS = chapter === '17' ? PAGE_TABS_17 : chapter === '18' ? PAGE_TABS_18 : PAGE_TABS_13;
+  const fullLatex =
+    chapter === '17' ? FULL_LATEX_DOCUMENT : chapter === '18' ? FULL_LATEX_DOCUMENT_18 : FULL_LATEX_DOCUMENT_13;
 
   const switchChapter = (c: Chapter) => {
     setChapter(c);
@@ -92,7 +107,9 @@ export function App() {
     a.download =
       chapter === '17'
         ? 'Chuong17_Alcohol_Ester_CarboxylicAcid_Trang226_233_VI.tex'
-        : 'Chuong18_CarbonylCompounds_Trang234_243_VI.tex';
+        : chapter === '18'
+        ? 'Chuong18_CarbonylCompounds_Trang234_243_VI.tex'
+        : 'Chuong13_Nitrogen_Sulfur_Trang180_186_VI.tex';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -125,13 +142,17 @@ export function App() {
                   <span className="text-xs text-stone-500 font-medium">
                     {chapter === '17'
                       ? 'Trang 226 – 233 (Đầy đủ 8 Hình & 11 Bài tập)'
-                      : 'Trang 234 – 243 (Đầy đủ 10 Hình vẽ lại SVG & 8 Bài tập có đáp án)'}
+                      : chapter === '18'
+                      ? 'Trang 234 – 243 (Đầy đủ 10 Hình vẽ lại SVG & 8 Bài tập có đáp án)'
+                      : 'Trang 180 – 186 (8 Hình vẽ lại SVG cao cấp & 6 Bài tập có đáp án)'}
                   </span>
                 </div>
                 <h1 className="text-base sm:text-lg font-bold text-stone-900 leading-tight mt-0.5">
                   {chapter === '17'
                     ? 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Alcohol, Ester và Carboxylic Acid'
-                    : 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Hợp chất Carbonyl (Aldehyde & Ketone)'}
+                    : chapter === '18'
+                    ? 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Hợp chất Carbonyl (Aldehyde & Ketone)'
+                    : 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Nitrogen và Sulfur (Acid Rain & Phân bón)'}
                 </h1>
               </div>
             </div>
@@ -140,6 +161,15 @@ export function App() {
             <div className="flex flex-wrap items-center gap-2">
               {/* Chapter Switcher */}
               <div className="inline-flex rounded-lg bg-stone-900 p-1">
+                <button
+                  type="button"
+                  onClick={() => switchChapter('13')}
+                  className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                    chapter === '13' ? 'bg-[#e9c529] text-stone-900 shadow-xs' : 'text-stone-300 hover:text-white'
+                  }`}
+                >
+                  Chương 13 (mới)
+                </button>
                 <button
                   type="button"
                   onClick={() => switchChapter('17')}
@@ -156,7 +186,7 @@ export function App() {
                     chapter === '18' ? 'bg-[#d33427] text-white shadow-xs' : 'text-stone-300 hover:text-white'
                   }`}
                 >
-                  Chương 18 (mới)
+                  Chương 18
                 </button>
               </div>
 
@@ -198,7 +228,7 @@ export function App() {
                   <Code2 className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Mã LaTeX Đầy Đủ</span>
                 </button>
-                {chapter === '18' && (
+                {chapter !== '17' && (
                   <button
                     type="button"
                     onClick={() => setViewMode('study')}
@@ -230,7 +260,9 @@ export function App() {
                     ? 'Đang hiện Đáp án'
                     : chapter === '17'
                     ? 'Hiện Đáp án (Câu 1–8)'
-                    : 'Hiện Đáp án (Câu 1–7)'}
+                    : chapter === '18'
+                    ? 'Hiện Đáp án (Câu 1–7)'
+                    : 'Hiện Đáp án (Câu 1–4)'}
                 </span>
               </button>
 
@@ -319,6 +351,12 @@ export function App() {
           </div>
         )}
 
+        {viewMode === 'study' && chapter === '13' && (
+          <div className="max-w-6xl mx-auto">
+            <StudyExtras13 />
+          </div>
+        )}
+
         {viewMode === 'preview' && (
           <div className="max-w-5xl mx-auto">
             {chapter === '17' ? (
@@ -327,8 +365,14 @@ export function App() {
                 showSolutionsGlobal={showSolutionsGlobal}
                 onViewPageLatex={handleViewPageLatex}
               />
-            ) : (
+            ) : chapter === '18' ? (
               <TextbookPages18
+                selectedPageFilter={selectedPageFilter}
+                showSolutionsGlobal={showSolutionsGlobal}
+                onViewPageLatex={handleViewPageLatex}
+              />
+            ) : (
+              <TextbookPages13
                 selectedPageFilter={selectedPageFilter}
                 showSolutionsGlobal={showSolutionsGlobal}
                 onViewPageLatex={handleViewPageLatex}
@@ -342,10 +386,12 @@ export function App() {
             <LatexCodeViewer
               activeSectionId={activeLatexSection}
               onSelectSection={setActiveLatexSection}
-              sections={chapter === '18' ? LATEX_SECTIONS_18 : undefined}
-              chapterTag={chapter === '17' ? 'Chương 17' : 'Chương 18'}
-              pageRange={chapter === '17' ? '226 – 233' : '234 – 243'}
-              downloadPrefix={chapter === '17' ? 'Cambridge_Chem_Ch17' : 'Cambridge_Chem_Ch18'}
+              sections={chapter === '18' ? LATEX_SECTIONS_18 : chapter === '13' ? LATEX_SECTIONS_13 : undefined}
+              chapterTag={chapter === '17' ? 'Chương 17' : chapter === '18' ? 'Chương 18' : 'Chương 13'}
+              pageRange={chapter === '17' ? '226 – 233' : chapter === '18' ? '234 – 243' : '180 – 186'}
+              downloadPrefix={
+                chapter === '17' ? 'Cambridge_Chem_Ch17' : chapter === '18' ? 'Cambridge_Chem_Ch18' : 'Cambridge_Chem_Ch13'
+              }
             />
           </div>
         )}
@@ -360,7 +406,9 @@ export function App() {
                   <span>
                     {chapter === '17'
                       ? 'BẢN DỊCH TIẾNG VIỆT CHUẨN FORM SÁCH GỐC (TRANG 226 – 233)'
-                      : 'BẢN DỊCH TIẾNG VIỆT CHUẨN FORM SÁCH GỐC (TRANG 234 – 243)'}
+                      : chapter === '18'
+                      ? 'BẢN DỊCH TIẾNG VIỆT CHUẨN FORM SÁCH GỐC (TRANG 234 – 243)'
+                      : 'BẢN DỊCH TIẾNG VIỆT CHUẨN FORM SÁCH GỐC (TRANG 180 – 186)'}
                   </span>
                 </div>
                 <span className="text-[11px] text-stone-500 hidden md:inline">
@@ -373,8 +421,14 @@ export function App() {
                   showSolutionsGlobal={showSolutionsGlobal}
                   onViewPageLatex={handleViewPageLatex}
                 />
-              ) : (
+              ) : chapter === '18' ? (
                 <TextbookPages18
+                  selectedPageFilter={selectedPageFilter}
+                  showSolutionsGlobal={showSolutionsGlobal}
+                  onViewPageLatex={handleViewPageLatex}
+                />
+              ) : (
+                <TextbookPages13
                   selectedPageFilter={selectedPageFilter}
                   showSolutionsGlobal={showSolutionsGlobal}
                   onViewPageLatex={handleViewPageLatex}
@@ -387,10 +441,12 @@ export function App() {
               <LatexCodeViewer
                 activeSectionId={activeLatexSection}
                 onSelectSection={setActiveLatexSection}
-                sections={chapter === '18' ? LATEX_SECTIONS_18 : undefined}
-                chapterTag={chapter === '17' ? 'Chương 17' : 'Chương 18'}
-                pageRange={chapter === '17' ? '226 – 233' : '234 – 243'}
-                downloadPrefix={chapter === '17' ? 'Cambridge_Chem_Ch17' : 'Cambridge_Chem_Ch18'}
+                sections={chapter === '18' ? LATEX_SECTIONS_18 : chapter === '13' ? LATEX_SECTIONS_13 : undefined}
+                chapterTag={chapter === '17' ? 'Chương 17' : chapter === '18' ? 'Chương 18' : 'Chương 13'}
+                pageRange={chapter === '17' ? '226 – 233' : chapter === '18' ? '234 – 243' : '180 – 186'}
+                downloadPrefix={
+                  chapter === '17' ? 'Cambridge_Chem_Ch17' : chapter === '18' ? 'Cambridge_Chem_Ch18' : 'Cambridge_Chem_Ch13'
+                }
               />
             </div>
           </div>
@@ -401,8 +457,8 @@ export function App() {
       <footer className="bg-stone-900 text-stone-400 text-xs py-5 px-6 border-t border-stone-800 print:hidden">
         <div className="max-w-[1600px] flex flex-col sm:flex-row items-center justify-between gap-2">
           <div>
-            Bản dịch Tiếng Việt &amp; Chế bản LaTeX hoàn chỉnh — Chương 17 (Trang 226–233) &amp; Chương 18: Hợp chất
-            carbonyl (Trang 234–243).
+            Bản dịch Tiếng Việt &amp; Chế bản LaTeX hoàn chỉnh — Chương 13: Nitrogen &amp; sulfur (180–186), Chương 17
+            (226–233) &amp; Chương 18: Hợp chất carbonyl (234–243).
           </div>
           <div className="text-stone-500">
             Sử dụng gói <code className="text-stone-300">tcolorbox</code>, <code className="text-stone-300">chemfig</code>,{' '}
