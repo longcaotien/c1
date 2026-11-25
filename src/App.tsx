@@ -5,12 +5,15 @@ import { TextbookPages13 } from './components/TextbookPages13';
 import { LatexCodeViewer } from './components/LatexCodeViewer';
 import { StudyExtras18 } from './components/StudyExtras18';
 import { StudyExtras13 } from './components/StudyExtras13';
+import { TextbookPages25 } from './components/TextbookPages25';
+import { StudyExtras25 } from './components/StudyExtras25';
 import { MathChapter1 } from './components/MathChapter1';
 import { BiologyPlaceholder } from './components/BiologyPlaceholder';
 import { FULL_LATEX_DOCUMENT } from './data/latexSource';
 import { LATEX_SECTIONS_18, FULL_LATEX_DOCUMENT_18 } from './data/latexSource18';
 import { LATEX_SECTIONS_13, FULL_LATEX_DOCUMENT_13 } from './data/latexSource13';
 import { LATEX_SECTIONS_MATH1, FULL_LATEX_DOCUMENT_MATH1 } from './data/latexSourceMath1';
+import { LATEX_SECTIONS_25, FULL_LATEX_DOCUMENT_25 } from './data/latexSource25';
 import {
   BookOpen,
   Code2,
@@ -28,7 +31,7 @@ import {
 } from 'lucide-react';
 
 type ViewMode = 'split' | 'preview' | 'latex' | 'study';
-type Chapter = '13' | '17' | '18';
+type Chapter = '13' | '17' | '18' | '25';
 type Subject = 'chemistry' | 'math' | 'biology';
 
 const PAGE_TABS_13 = [
@@ -68,16 +71,27 @@ const PAGE_TABS_18 = [
   { id: 'p243', label: 'Trang 243' },
 ];
 
+const PAGE_TABS_25 = [
+  { id: 'all', label: 'Tất cả (382–392)' },
+  { id: 'p382', label: 'Trang 382' },
+  { id: 'p383', label: 'Trang 383' },
+  { id: 'p384', label: 'Trang 384–385' },
+  { id: 'p386', label: 'Trang 386–387' },
+  { id: 'p388', label: 'Trang 388–389' },
+  { id: 'p390', label: 'Trang 390' },
+  { id: 'p391', label: 'Trang 391–392' },
+];
+
 export function App() {
   const [subject, setSubject] = useState<Subject>('math');
-  const [chapter, setChapter] = useState<Chapter>('13');
+  const [chapter, setChapter] = useState<Chapter>('25');
   const [viewMode, setViewMode] = useState<ViewMode>('split');
   const [selectedPageFilter, setSelectedPageFilter] = useState<string>('all');
   const [activeLatexSection, setActiveLatexSection] = useState<string>('full');
   const [showSolutionsGlobal, setShowSolutionsGlobal] = useState<boolean>(false);
   const [copiedFull, setCopiedFull] = useState<boolean>(false);
 
-  const PAGE_TABS = chapter === '17' ? PAGE_TABS_17 : chapter === '18' ? PAGE_TABS_18 : PAGE_TABS_13;
+  const PAGE_TABS = chapter === '17' ? PAGE_TABS_17 : chapter === '18' ? PAGE_TABS_18 : chapter === '25' ? PAGE_TABS_25 : PAGE_TABS_13;
   const fullLatex =
     subject === 'math'
       ? FULL_LATEX_DOCUMENT_MATH1
@@ -85,6 +99,8 @@ export function App() {
       ? FULL_LATEX_DOCUMENT
       : chapter === '18'
       ? FULL_LATEX_DOCUMENT_18
+      : chapter === '25'
+      ? FULL_LATEX_DOCUMENT_25
       : FULL_LATEX_DOCUMENT_13;
 
   const switchSubject = (s: Subject) => {
@@ -133,6 +149,8 @@ export function App() {
         ? 'Chuong17_Alcohol_Ester_CarboxylicAcid_Trang226_233_VI.tex'
         : chapter === '18'
         ? 'Chuong18_CarbonylCompounds_Trang234_243_VI.tex'
+        : chapter === '25'
+        ? 'Chuong25_Benzene_Compounds_Trang382_392_VI.tex'
         : 'Chuong13_Nitrogen_Sulfur_Trang180_186_VI.tex';
     document.body.appendChild(a);
     a.click();
@@ -194,6 +212,8 @@ export function App() {
                       ? 'Trang 226 – 233 (Đầy đủ 8 Hình & 11 Bài tập)'
                       : chapter === '18'
                       ? 'Trang 234 – 243 (Đầy đủ 10 Hình vẽ lại SVG & 8 Bài tập có đáp án)'
+                      : chapter === '25'
+                      ? 'Trang 382 – 392 (14 Hình vẽ lại SVG chính xác & Câu 1–8 + EOC có đáp án)'
                       : 'Trang 180 – 186 (8 Hình vẽ lại SVG cao cấp & 6 Bài tập có đáp án)'}
                   </span>
                 </div>
@@ -206,6 +226,8 @@ export function App() {
                     ? 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Alcohol, Ester và Carboxylic Acid'
                     : chapter === '18'
                     ? 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Hợp chất Carbonyl (Aldehyde & Ketone)'
+                    : chapter === '25'
+                    ? 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Benzene and its Compounds (Arene & Phenol)'
                     : 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Nitrogen và Sulfur (Acid Rain & Phân bón)'}
                 </h1>
               </div>
@@ -273,6 +295,15 @@ export function App() {
                     }`}
                   >
                     Chương 18
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => switchChapter('25')}
+                    className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                      chapter === '25' ? 'bg-[#d33427] text-white shadow-xs' : 'text-stone-600 hover:text-stone-900'
+                    }`}
+                  >
+                    Chương 25 (mới)
                   </button>
                 </div>
               )}
@@ -352,6 +383,8 @@ export function App() {
                       ? 'Hiện Đáp án (Câu 1–8)'
                       : chapter === '18'
                       ? 'Hiện Đáp án (Câu 1–7)'
+                      : chapter === '25'
+                      ? 'Hiện Đáp án (Câu 1–8 + EOC)'
                       : 'Hiện Đáp án (Câu 1–4)'}
                   </span>
                 </button>
@@ -504,6 +537,12 @@ export function App() {
           </div>
         )}
 
+        {subject === 'chemistry' && viewMode === 'study' && chapter === '25' && (
+          <div className="max-w-6xl mx-auto">
+            <StudyExtras25 />
+          </div>
+        )}
+
         {subject === 'chemistry' && viewMode === 'preview' && (
           <div className="max-w-5xl mx-auto">
             {chapter === '17' ? (
@@ -514,6 +553,12 @@ export function App() {
               />
             ) : chapter === '18' ? (
               <TextbookPages18
+                selectedPageFilter={selectedPageFilter}
+                showSolutionsGlobal={showSolutionsGlobal}
+                onViewPageLatex={handleViewPageLatex}
+              />
+            ) : chapter === '25' ? (
+              <TextbookPages25
                 selectedPageFilter={selectedPageFilter}
                 showSolutionsGlobal={showSolutionsGlobal}
                 onViewPageLatex={handleViewPageLatex}
@@ -533,11 +578,17 @@ export function App() {
             <LatexCodeViewer
               activeSectionId={activeLatexSection}
               onSelectSection={setActiveLatexSection}
-              sections={chapter === '18' ? LATEX_SECTIONS_18 : chapter === '13' ? LATEX_SECTIONS_13 : undefined}
-              chapterTag={chapter === '17' ? 'Chương 17' : chapter === '18' ? 'Chương 18' : 'Chương 13'}
-              pageRange={chapter === '17' ? '226 – 233' : chapter === '18' ? '234 – 243' : '180 – 186'}
+              sections={chapter === '18' ? LATEX_SECTIONS_18 : chapter === '13' ? LATEX_SECTIONS_13 : chapter === '25' ? LATEX_SECTIONS_25 : undefined}
+              chapterTag={chapter === '17' ? 'Chương 17' : chapter === '18' ? 'Chương 18' : chapter === '25' ? 'Chương 25' : 'Chương 13'}
+              pageRange={chapter === '17' ? '226 – 233' : chapter === '18' ? '234 – 243' : chapter === '25' ? '382 – 392' : '180 – 186'}
               downloadPrefix={
-                chapter === '17' ? 'Cambridge_Chem_Ch17' : chapter === '18' ? 'Cambridge_Chem_Ch18' : 'Cambridge_Chem_Ch13'
+                chapter === '17'
+                    ? 'Cambridge_Chem_Ch17'
+                    : chapter === '18'
+                    ? 'Cambridge_Chem_Ch18'
+                    : chapter === '25'
+                    ? 'Cambridge_Chem_Ch25'
+                    : 'Cambridge_Chem_Ch13'
               }
             />
           </div>
@@ -555,6 +606,8 @@ export function App() {
                       ? 'BẢN DỊCH TIẾNG VIỆT CHUẨN FORM SÁCH GỐC (TRANG 226 – 233)'
                       : chapter === '18'
                       ? 'BẢN DỊCH TIẾNG VIỆT CHUẨN FORM SÁCH GỐC (TRANG 234 – 243)'
+                      : chapter === '25'
+                      ? 'BẢN DỊCH TIẾNG VIỆT CHUẨN FORM SÁCH GỐC (TRANG 382 – 392)'
                       : 'BẢN DỊCH TIẾNG VIỆT CHUẨN FORM SÁCH GỐC (TRANG 180 – 186)'}
                   </span>
                 </div>
@@ -574,6 +627,12 @@ export function App() {
                   showSolutionsGlobal={showSolutionsGlobal}
                   onViewPageLatex={handleViewPageLatex}
                 />
+              ) : chapter === '25' ? (
+                <TextbookPages25
+                  selectedPageFilter={selectedPageFilter}
+                  showSolutionsGlobal={showSolutionsGlobal}
+                  onViewPageLatex={handleViewPageLatex}
+                />
               ) : (
                 <TextbookPages13
                   selectedPageFilter={selectedPageFilter}
@@ -588,11 +647,17 @@ export function App() {
               <LatexCodeViewer
                 activeSectionId={activeLatexSection}
                 onSelectSection={setActiveLatexSection}
-                sections={chapter === '18' ? LATEX_SECTIONS_18 : chapter === '13' ? LATEX_SECTIONS_13 : undefined}
-                chapterTag={chapter === '17' ? 'Chương 17' : chapter === '18' ? 'Chương 18' : 'Chương 13'}
-                pageRange={chapter === '17' ? '226 – 233' : chapter === '18' ? '234 – 243' : '180 – 186'}
+                sections={chapter === '18' ? LATEX_SECTIONS_18 : chapter === '13' ? LATEX_SECTIONS_13 : chapter === '25' ? LATEX_SECTIONS_25 : undefined}
+                chapterTag={chapter === '17' ? 'Chương 17' : chapter === '18' ? 'Chương 18' : chapter === '25' ? 'Chương 25' : 'Chương 13'}
+                pageRange={chapter === '17' ? '226 – 233' : chapter === '18' ? '234 – 243' : chapter === '25' ? '382 – 392' : '180 – 186'}
                 downloadPrefix={
-                  chapter === '17' ? 'Cambridge_Chem_Ch17' : chapter === '18' ? 'Cambridge_Chem_Ch18' : 'Cambridge_Chem_Ch13'
+                  chapter === '17'
+                    ? 'Cambridge_Chem_Ch17'
+                    : chapter === '18'
+                    ? 'Cambridge_Chem_Ch18'
+                    : chapter === '25'
+                    ? 'Cambridge_Chem_Ch25'
+                    : 'Cambridge_Chem_Ch13'
                 }
               />
             </div>
@@ -606,7 +671,7 @@ export function App() {
           <div>
             <span className="font-semibold text-stone-300">Toán học:</span> Chương 1 — John Napier, 1614 (e: The Story
             of a Number, Eli Maor). <span className="font-semibold text-stone-300">Hóa học:</span> Chương 13: Nitrogen
-            &amp; sulfur (180–186), Chương 17 (226–233) &amp; Chương 18: Hợp chất carbonyl (234–243).{' '}
+            &amp; sulfur (180–186), Chương 17 (226–233) &amp; Chương 18: Hợp chất carbonyl (234–243) &amp; Chương 25: Benzene and its compounds (382–392).{' '}
             <span className="font-semibold text-stone-300">Sinh học:</span> đang chờ tài liệu nguồn.
           </div>
           <div className="text-stone-500">
