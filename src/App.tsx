@@ -274,7 +274,7 @@ export function App() {
                     subject === 'math' ? 'bg-[#e9c529] text-stone-900 shadow-xs' : 'text-stone-300 hover:text-white'
                   }`}
                 >
-                  Toán học (mới)
+                  Toán học
                 </button>
                 <button
                   type="button"
@@ -333,7 +333,7 @@ export function App() {
                       chapter === '25' ? 'bg-[#d33427] text-white shadow-xs' : 'text-stone-600 hover:text-stone-900'
                     }`}
                   >
-                    Chương 25 (mới)
+                    Chương 25
                   </button>
                 </div>
               )}
