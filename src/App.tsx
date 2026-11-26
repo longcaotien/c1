@@ -14,6 +14,8 @@ import { LATEX_SECTIONS_18, FULL_LATEX_DOCUMENT_18 } from './data/latexSource18'
 import { LATEX_SECTIONS_13, FULL_LATEX_DOCUMENT_13 } from './data/latexSource13';
 import { LATEX_SECTIONS_MATH1, FULL_LATEX_DOCUMENT_MATH1 } from './data/latexSourceMath1';
 import { LATEX_SECTIONS_25, FULL_LATEX_DOCUMENT_25 } from './data/latexSource25';
+import { SQLChapter1 } from './components/SQLChapter1';
+import { LATEX_SECTIONS_SQL1, FULL_LATEX_DOCUMENT_SQL1 } from './data/latexSourceSQL1';
 import {
   BookOpen,
   Code2,
@@ -28,11 +30,12 @@ import {
   GraduationCap,
   Sigma,
   Dna,
+  Database,
 } from 'lucide-react';
 
 type ViewMode = 'split' | 'preview' | 'latex' | 'study';
 type Chapter = '13' | '17' | '18' | '25';
-type Subject = 'chemistry' | 'math' | 'biology';
+type Subject = 'chemistry' | 'math' | 'biology' | 'sql';
 
 const PAGE_TABS_13 = [
   { id: 'all', label: 'Tất cả (180–186)' },
@@ -83,7 +86,7 @@ const PAGE_TABS_25 = [
 ];
 
 export function App() {
-  const [subject, setSubject] = useState<Subject>('math');
+  const [subject, setSubject] = useState<Subject>('sql');
   const [chapter, setChapter] = useState<Chapter>('25');
   const [viewMode, setViewMode] = useState<ViewMode>('split');
   const [selectedPageFilter, setSelectedPageFilter] = useState<string>('all');
@@ -93,7 +96,9 @@ export function App() {
 
   const PAGE_TABS = chapter === '17' ? PAGE_TABS_17 : chapter === '18' ? PAGE_TABS_18 : chapter === '25' ? PAGE_TABS_25 : PAGE_TABS_13;
   const fullLatex =
-    subject === 'math'
+    subject === 'sql'
+      ? FULL_LATEX_DOCUMENT_SQL1
+      : subject === 'math'
       ? FULL_LATEX_DOCUMENT_MATH1
       : chapter === '17'
       ? FULL_LATEX_DOCUMENT
@@ -143,7 +148,9 @@ export function App() {
     const a = document.createElement('a');
     a.href = url;
     a.download =
-      subject === 'math'
+      subject === 'sql'
+        ? 'HeadFirst_SQL_Ch1_Databases_Tables_VI.tex'
+        : subject === 'math'
         ? 'Toan_Ch1_JohnNapier_1614_e_StoryOfANumber_VI.tex'
         : chapter === '17'
         ? 'Chuong17_Alcohol_Ester_CarboxylicAcid_Trang226_233_VI.tex'
@@ -166,7 +173,13 @@ export function App() {
   };
 
   const subjectAccent =
-    subject === 'math' ? '#7a5c17' : subject === 'biology' ? '#2e7d46' : '#d33427';
+    subject === 'math'
+      ? '#7a5c17'
+      : subject === 'biology'
+      ? '#2e7d46'
+      : subject === 'sql'
+      ? '#00758f'
+      : '#d33427';
 
   return (
     <div className="min-h-screen bg-stone-200/80 text-stone-900 flex flex-col">
@@ -184,6 +197,8 @@ export function App() {
                   <Sigma className="w-5 h-5" />
                 ) : subject === 'biology' ? (
                   <Dna className="w-5 h-5" />
+                ) : subject === 'sql' ? (
+                  <Database className="w-5 h-5" />
                 ) : (
                   <FlaskConical className="w-5 h-5" />
                 )}
@@ -201,6 +216,8 @@ export function App() {
                       ? 'Toán học · e: The Story of a Number (Eli Maor)'
                       : subject === 'biology'
                       ? 'Sinh học · Sắp ra mắt'
+                      : subject === 'sql'
+                      ? 'SQL · Head First SQL (2nd Edition)'
                       : 'Cambridge AS & A Level Chemistry'}
                   </span>
                   <span className="text-xs text-stone-500 font-medium">
@@ -208,6 +225,8 @@ export function App() {
                       ? 'Chương 1 (trang 3–10): 8 hình vẽ giải thích chi tiết + thuật ngữ + LaTeX'
                       : subject === 'biology'
                       ? 'Đang chờ tài liệu nguồn từ người dùng'
+                      : subject === 'sql'
+                      ? 'Chương 1: Databases & Tables — mã lệnh MySQL + 9 hình vẽ lại + bài tập có đáp án'
                       : chapter === '17'
                       ? 'Trang 226 – 233 (Đầy đủ 8 Hình & 11 Bài tập)'
                       : chapter === '18'
@@ -222,6 +241,8 @@ export function App() {
                     ? 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: John Napier, 1614 — Khởi nguồn của Logarit'
                     : subject === 'biology'
                     ? 'Phần Sinh học — nội dung sẽ mở khi có tài liệu nguồn'
+                    : subject === 'sql'
+                    ? 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Databases and Tables — Tổ chức thông tin của bạn'
                     : chapter === '17'
                     ? 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: Alcohol, Ester và Carboxylic Acid'
                     : chapter === '18'
@@ -263,6 +284,15 @@ export function App() {
                   }`}
                 >
                   Sinh học
+                </button>
+                <button
+                  type="button"
+                  onClick={() => switchSubject('sql')}
+                  className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                    subject === 'sql' ? 'bg-[#00758f] text-white shadow-xs' : 'text-stone-300 hover:text-white'
+                  }`}
+                >
+                  SQL (mới)
                 </button>
               </div>
 
@@ -364,8 +394,8 @@ export function App() {
                 </div>
               )}
 
-              {/* Toggle Solutions — chỉ Hóa học */}
-              {subject === 'chemistry' && (
+              {/* Toggle Solutions — Hóa học & SQL */}
+              {(subject === 'chemistry' || subject === 'sql') && (
                 <button
                   type="button"
                   onClick={() => setShowSolutionsGlobal(!showSolutionsGlobal)}
@@ -379,6 +409,8 @@ export function App() {
                   <span>
                     {showSolutionsGlobal
                       ? 'Đang hiện Đáp án'
+                      : subject === 'sql'
+                      ? 'Hiện Đáp án (Luyện tập 1–8)'
                       : chapter === '17'
                       ? 'Hiện Đáp án (Câu 1–8)'
                       : chapter === '18'
@@ -476,6 +508,53 @@ export function App() {
       <main className="flex-1 max-w-[1600px] w-full mx-auto px-3 sm:px-6 py-6">
         {/* ==================== SINH HỌC ==================== */}
         {subject === 'biology' && <BiologyPlaceholder />}
+
+        {/* ==================== SQL ==================== */}
+        {subject === 'sql' && viewMode === 'preview' && (
+          <div className="max-w-5xl mx-auto">
+            <SQLChapter1 showSolutions={showSolutionsGlobal} />
+          </div>
+        )}
+
+        {subject === 'sql' && viewMode === 'latex' && (
+          <div className="max-w-6xl mx-auto">
+            <LatexCodeViewer
+              activeSectionId={activeLatexSection}
+              onSelectSection={setActiveLatexSection}
+              sections={LATEX_SECTIONS_SQL1}
+              chapterTag="Chương 1"
+              pageRange="Databases & Tables"
+              downloadPrefix="HeadFirst_SQL_Ch1"
+            />
+          </div>
+        )}
+
+        {subject === 'sql' && viewMode === 'split' && (
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+            <div className="xl:col-span-7 space-y-4">
+              <div className="bg-white rounded-xl px-4 py-2.5 border border-stone-300 flex items-center justify-between shadow-2xs print:hidden">
+                <div className="flex items-center gap-2 text-xs font-bold text-stone-800">
+                  <FileCheck2 className="w-4 h-4 text-[#00758f]" />
+                  <span>BẢN DỊCH TIẾNG VIỆT — CHƯƠNG 1: DATABASES AND TABLES (HEAD FIRST SQL)</span>
+                </div>
+                <span className="text-[11px] text-stone-500 hidden md:inline">
+                  Mã lệnh MySQL nguyên bản + 9 hình vẽ lại (S1.1 – S1.9)
+                </span>
+              </div>
+              <SQLChapter1 showSolutions={showSolutionsGlobal} />
+            </div>
+            <div className="xl:col-span-5 xl:sticky xl:top-28 print:hidden">
+              <LatexCodeViewer
+                activeSectionId={activeLatexSection}
+                onSelectSection={setActiveLatexSection}
+                sections={LATEX_SECTIONS_SQL1}
+                chapterTag="Chương 1"
+                pageRange="Databases & Tables"
+                downloadPrefix="HeadFirst_SQL_Ch1"
+              />
+            </div>
+          </div>
+        )}
 
         {/* ==================== TOÁN HỌC ==================== */}
         {subject === 'math' && viewMode === 'preview' && (
@@ -672,7 +751,8 @@ export function App() {
             <span className="font-semibold text-stone-300">Toán học:</span> Chương 1 — John Napier, 1614 (e: The Story
             of a Number, Eli Maor). <span className="font-semibold text-stone-300">Hóa học:</span> Chương 13: Nitrogen
             &amp; sulfur (180–186), Chương 17 (226–233) &amp; Chương 18: Hợp chất carbonyl (234–243) &amp; Chương 25: Benzene and its compounds (382–392).{' '}
-            <span className="font-semibold text-stone-300">Sinh học:</span> đang chờ tài liệu nguồn.
+            <span className="font-semibold text-stone-300">SQL:</span> Chương 1 — Databases and Tables (Head First
+            SQL). <span className="font-semibold text-stone-300">Sinh học:</span> đang chờ tài liệu nguồn.
           </div>
           <div className="text-stone-500">
             Sử dụng gói <code className="text-stone-300">tcolorbox</code>, <code className="text-stone-300">chemfig</code>,{' '}
