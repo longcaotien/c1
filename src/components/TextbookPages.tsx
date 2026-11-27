@@ -12,7 +12,7 @@ import {
 import { CheckCircle2, ChevronDown, ChevronUp, Code2 } from 'lucide-react';
 
 interface QuestionBoxProps {
-  number: number;
+  number: number | string;
   children: React.ReactNode;
   solution?: React.ReactNode;
   showSolutionsGlobal?: boolean;
