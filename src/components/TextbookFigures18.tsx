@@ -16,7 +16,7 @@ export const DisplayedCarbonyls: React.FC = () => {
   return (
     <div className="grid grid-cols-2 gap-3 items-end">
       {/* heptan-2-one displayed formula */}
-      <svg viewBox="0 0 200 92" className="w-full" role="img" aria-label="Công thức khai triển heptan-2-one">
+      <svg viewBox="0 0 200 100" className="w-full" role="img" aria-label="Công thức khai triển heptan-2-one">
         {xs.map((x, i) => (
           <g key={i} stroke="#fff" strokeWidth="1.1">
             {i < 6 && <line x1={x + 4} y1={48} x2={xs[i + 1] - 4} y2={48} />}
@@ -38,12 +38,12 @@ export const DisplayedCarbonyls: React.FC = () => {
             {i === 1 && <text x={x} y={80}>O</text>}
           </g>
         ))}
-        <text x={100} y={91} fill="#ffe1de" fontSize="8.5" fontFamily="sans-serif" textAnchor="middle">
+        <text x={100} y={95} fill="#ffe1de" fontSize="8.5" fontFamily="sans-serif" textAnchor="middle">
           heptan-2-one
         </text>
       </svg>
       {/* benzaldehyde displayed formula */}
-      <svg viewBox="0 0 200 92" className="w-full" role="img" aria-label="Công thức khai triển benzaldehyde">
+      <svg viewBox="0 0 200 100" className="w-full" role="img" aria-label="Công thức khai triển benzaldehyde">
         <g stroke="#fff" strokeWidth="1.2" fill="none">
           <polygon points="70,30 88,40 88,60 70,70 52,60 52,40" />
           <line x1={70} y1={35} x2={84} y2={43} />
@@ -59,7 +59,7 @@ export const DisplayedCarbonyls: React.FC = () => {
           <text x={108} y={53}>C</text>
           <text x={130} y={62}>H</text>
         </g>
-        <text x={100} y={91} fill="#ffe1de" fontSize="8.5" fontFamily="sans-serif" textAnchor="middle">
+        <text x={100} y={95} fill="#ffe1de" fontSize="8.5" fontFamily="sans-serif" textAnchor="middle">
           benzaldehyde
         </text>
       </svg>
@@ -162,7 +162,6 @@ export const Figure18_2: React.FC = () => (
         <text x="8" y="86">ethanol + kali</text>
         <text x="8" y="98">dichromate(VI)</text>
         <text x="8" y="110">đã acid hóa</text>
-        <line x1="52" y1="92" x2="80" y2="104" stroke="#90a4ae" strokeWidth="1" />
         <text x="196" y="126">ethanal</text>
         <line x1="186" y1="128" x2="194" y2="132" stroke="#90a4ae" strokeWidth="1" />
         <text x="60" y="186">đun nhẹ (gentle heat)</text>
@@ -568,14 +567,13 @@ export const MechanismHCN: React.FC = () => (
         <text x="52" y="82" fontSize="9">R</text>
         <text x="98" y="82" fontSize="9">R&#8242;</text>
         {/* cyanide */}
-        <text x="140" y="76">&#8254;CN</text>
+        <text x="140" y="76">CN⁻</text>
         <circle cx="136" cy="70" r="1.6" fill="#263238" />
         <circle cx="133" cy="74" r="1.6" fill="#263238" />
-        <text x="152" y="90" fontSize="8" fill="#c0392b">⁻</text>
       </g>
       {/* curly arrows */}
-      <path d="M136 68 Q112 66 96 58" fill="none" stroke="#c0392b" strokeWidth="1.3" markerEnd="url(#ah1)" />
-      <path d="M88 40 Q102 34 108 26" fill="none" stroke="#c0392b" strokeWidth="1.3" markerEnd="url(#ah1)" />
+      <path d="M136 70 Q110 68 92 60" fill="none" stroke="#c0392b" strokeWidth="1.3" markerEnd="url(#ah1)" />
+      <path d="M84 44 Q92 38 92 33" fill="none" stroke="#c0392b" strokeWidth="1.3" markerEnd="url(#ah1)" />
       <line x1="180" y1="50" x2="206" y2="50" stroke="#546e7a" strokeWidth="1.4" />
       {/* intermediate */}
       <g fontFamily="monospace" fontSize="11" fill="#263238">
@@ -619,7 +617,6 @@ export const MechanismHCN: React.FC = () => (
         <text x="128" y="40">CN</text>
       </g>
       <path d="M52 24 Q78 14 104 30" fill="none" stroke="#c0392b" strokeWidth="1.3" markerEnd="url(#ah2)" />
-      <path d="M122 42 Q128 54 140 58" fill="none" stroke="#c0392b" strokeWidth="1.3" markerEnd="url(#ah2)" />
       <line x1="176" y1="48" x2="202" y2="48" stroke="#546e7a" strokeWidth="1.4" />
       <g fontFamily="monospace" fontSize="11" fill="#263238">
         <text x="240" y="26">OH</text>
@@ -631,7 +628,6 @@ export const MechanismHCN: React.FC = () => (
         <text x="214" y="78" fontSize="9">R</text>
         <text x="258" y="78" fontSize="9">R&#8242;</text>
         <text x="238" y="80">CN</text>
-        <text x="290" y="52">+ ⁻CN</text>
       </g>
       <text x="248" y="12" textAnchor="middle" fontFamily="sans-serif" fontSize="9" fill="#546e7a">
         2-hydroxynitrile
@@ -650,10 +646,10 @@ const DnphRing: React.FC<{ x: number; y: number; withH?: boolean }> = ({ x, y, w
     <line x1={x} y1={y + 31} x2={x - 12} y2={y + 24} />
     <line x1={x - 12} y1={y + 12} x2={x} y2={y + 5} />
     {/* NO2 at 2 and 4 */}
-    <line x1={x + 16} y1={y + 9} x2={x + 28} y2={y + 3} />
+    <line x1={x + 16} y1={y + 9} x2={x + 24} y2={y + 5} />
     <text x={x + 30} y={y + 2} stroke="none" fill="#37474f">NO₂</text>
-    <line x1={x - 16} y1={y + 27} x2={x - 28} y2={y + 33} />
-    <text x={x - 46} y={y + 38} stroke="none" fill="#37474f">O₂N</text>
+    <line x1={x - 16} y1={y + 27} x2={x - 26} y2={y + 32} />
+    <text x={x - 50} y={y + 38} stroke="none" fill="#37474f">O₂N</text>
     {/* hydrazine arm */}
     <line x1={x} y1={y} x2={x} y2={y - 8} />
     <text x={x - 3} y={y - 11} stroke="none" fill="#37474f">NH</text>
@@ -673,7 +669,7 @@ const DnphRing: React.FC<{ x: number; y: number; withH?: boolean }> = ({ x, y, w
 
 export const Condensation24DNPH: React.FC = () => (
   <div className="my-3 bg-white/85 p-3 rounded border border-stone-200/80">
-    <svg viewBox="0 0 360 120" className="w-full" role="img" aria-label="Phản ứng ngưng tụ 2,4-DNPH với ethanal">
+    <svg viewBox="0 0 380 120" className="w-full" role="img" aria-label="Phản ứng ngưng tụ 2,4-DNPH với ethanal">
       <DnphRing x={60} y={70} withH />
       <text x={42} y={112} fontFamily="sans-serif" fontSize="8.5" fill="#546e7a">
         2,4-dinitrophenylhydrazine
@@ -693,13 +689,13 @@ export const Condensation24DNPH: React.FC = () => (
       <line x1="196" y1="56" x2="228" y2="56" stroke="#546e7a" strokeWidth="1.4" />
       <DnphRing x={272} y={70} withH={false} />
       <g fontFamily="monospace" fontSize="10" fill="#263238">
-        <text x="296" y="40">CH₃</text>
-        <line x1="304" y1="44" x2="304" y2="52" stroke="#263238" strokeWidth="1.1" />
-        <text x="300" y="62">C</text>
-        <line x1="306" y1="60" x2="316" y2="68" stroke="#263238" strokeWidth="1.1" />
-        <text x="318" y="74">H</text>
+        <text x="306" y="32">CH₃</text>
+        <line x1="312" y1="36" x2="312" y2="44" stroke="#263238" strokeWidth="1.1" />
+        <text x="308" y="52">C</text>
+        <line x1="313" y1="49" x2="321" y2="55" stroke="#263238" strokeWidth="1.1" />
+        <text x="323" y="60">H</text>
       </g>
-      <text x="330" y="52" fontFamily="monospace" fontSize="10" fill="#263238">+ H₂O</text>
+      <text x="336" y="52" fontFamily="monospace" fontSize="10" fill="#263238">+ H₂O</text>
       <text x="252" y="112" fontFamily="sans-serif" fontSize="8.5" fill="#546e7a">
         2,4-dinitrophenylhydrazone
       </text>

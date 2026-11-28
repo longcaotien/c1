@@ -140,40 +140,41 @@ export const Figure25_1: React.FC = () => (
 ========================================================================== */
 export const Figure25_2: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 420 150" className="w-full" role="img" aria-label="Cấu trúc Kekulé của benzene">
+    <svg viewBox="0 0 460 160" className="w-full" role="img" aria-label="Cấu trúc Kekulé của benzene">
       <Defs25 />
       {/* công thức hiển thị đầy đủ */}
       <g>
-        <Ring cx={105} cy={75} r={40} kind="kekule" />
+        <Ring cx={96} cy={70} r={36} kind="kekule" />
         {Array.from({ length: 6 }).map((_, i) => {
-          const [x, y] = V(105, 75, 40, i);
-          const [hx, hy] = V(105, 75, 58, i);
+          const [x, y] = V(96, 70, 36, i);
+          const [hx, hy] = V(96, 70, 52, i);
+          const [lx, ly] = V(96, 70, 62, i);
           return (
             <g key={i}>
               <line x1={x} y1={y} x2={hx} y2={hy} stroke="#263238" strokeWidth={1.4} />
-              <Lab x={V(105, 75, 68, i)[0]} y={V(105, 75, 68, i)[1] + 4} t="H" s={11} />
+              <Lab x={lx} y={ly + 3.5} t="H" s={10.5} />
             </g>
           );
         })}
-        <text x={105} y={144} textAnchor="middle" fontFamily="sans-serif" fontSize="9" fill="#57534e">
+        <text x={96} y={150} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
           công thức hiển thị (Kekulé, 1865)
         </text>
       </g>
-      <text x={205} y={79} textAnchor="middle" fontFamily="sans-serif" fontSize="9.5" fill="#57534e">
+      <text x={196} y={74} textAnchor="middle" fontFamily="sans-serif" fontSize="9" fill="#57534e">
         cũng vẽ là
       </text>
       {/* công thức khung */}
       <g>
-        <Ring cx={290} cy={75} r={40} kind="kekule" />
-        <text x={290} y={144} textAnchor="middle" fontFamily="sans-serif" fontSize="9" fill="#57534e">
+        <Ring cx={288} cy={70} r={36} kind="kekule" />
+        <text x={288} y={150} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
           công thức khung (skeletale)
         </text>
       </g>
       {/* chú thích nối đôi */}
-      <g fontFamily="sans-serif" fontSize="8.6" fill="#8c1d13">
-        <text x={352} y={40}>3 nối đôi C=C</text>
-        <text x={352} y={52}>xen kẽ 3 nối đơn</text>
-        <text x={352} y={64}>C–C → “hexagon méo”?</text>
+      <g fontFamily="sans-serif" fontSize="8.4" fill="#8c1d13">
+        <text x={342} y={48}>3 nối đôi C=C</text>
+        <text x={342} y={60}>xen kẽ 3 nối đơn</text>
+        <text x={342} y={72}>→ “hexagon méo”?</text>
       </g>
     </svg>
     <figcaption className={CAP25}>
@@ -237,56 +238,63 @@ export const Figure25_3: React.FC = () => (
 ========================================================================== */
 export const Figure25_4: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 190" className="w-full" role="img" aria-label="Liên kết pi trong benzene">
+    <svg viewBox="0 0 460 205" className="w-full" role="img" aria-label="Liên kết pi trong benzene">
       <Defs25 />
+      <text x={230} y={16} textAnchor="middle" fontFamily="sans-serif" fontSize="9.4" fontWeight="700" fill="#1b5e20">
+        Mỗi C sp²: 3 liên kết σ (2 C–C, 1 C–H) + 1 electron p góp vào hệ π chung
+      </text>
       {/* ---- nhìn nghiêng: mặt phẳng ring + 6 orbital p ---- */}
-      <g transform="translate(120 100)">
+      <g transform="translate(118 100)">
         {/* đám mây π trên & dưới (hai vòng xuyến) */}
-        <ellipse cx={0} cy={-34} rx={78} ry={26} fill="url(#cloud25)" />
-        <ellipse cx={0} cy={34} rx={78} ry={26} fill="url(#cloud25)" />
+        <ellipse cx={0} cy={-36} rx={74} ry={24} fill="url(#cloud25)" />
+        <ellipse cx={0} cy={36} rx={74} ry={24} fill="url(#cloud25)" />
         {/* mặt phẳng vòng (phối cảnh) */}
-        <polygon points="-70,-14 0,-30 70,-14 0,18" fill="#eceff1" stroke="#90a4ae" strokeWidth="1" />
+        <polygon points="-66,-14 0,-30 66,-14 0,18" fill="#eceff1" stroke="#90a4ae" strokeWidth="1" />
         {/* 6 orbital p */}
-        {[-52, -26, 0, 26, 52].map((x, i) => {
+        {[-50, -25, 0, 25, 50].map((x, i) => {
           const y = i === 0 || i === 4 ? -6 : i === 1 || i === 3 ? -12 : -18;
           return (
             <g key={i}>
-              <ellipse cx={x} cy={y - 20} rx={8.5} ry={19} fill="url(#lobe25)" opacity={0.92} />
-              <ellipse cx={x} cy={y + 20} rx={8.5} ry={19} fill="url(#lobe25b)" opacity={0.92} />
+              <ellipse cx={x} cy={y - 20} rx={8} ry={18} fill="url(#lobe25)" opacity={0.92} />
+              <ellipse cx={x} cy={y + 20} rx={8} ry={18} fill="url(#lobe25b)" opacity={0.92} />
             </g>
           );
         })}
         {/* nhãn H */}
-        <Lab x={-70} y={-10} t="H" s={9} c="#78909c" />
-        <Lab x={70} y={-10} t="H" s={9} c="#78909c" />
-        <text x={0} y={80} textAnchor="middle" fontFamily="sans-serif" fontSize="9" fill="#57534e">
-          nhìn nghiêng: 6 orbital p xen phủ tạo hai đám mây π trên &amp; dưới mặt phẳng
+        <Lab x={-66} y={-10} t="H" s={9} c="#78909c" />
+        <Lab x={66} y={-10} t="H" s={9} c="#78909c" />
+        <text x={0} y={78} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
+          nhìn nghiêng — 6 orbital p xen phủ
+        </text>
+        <text x={0} y={90} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
+          tạo 2 đám mây π trên &amp; dưới vòng
         </text>
       </g>
       {/* ---- nhìn từ trên: vòng + vòng tròn delocalised ---- */}
-      <g transform="translate(330 92)">
-        <ellipse cx={0} cy={0} rx={62} ry={62} fill="url(#cloud25)" />
-        <Ring cx={0} cy={0} r={40} kind="circle" stroke="#1b5e20" />
+      <g transform="translate(330 96)">
+        <ellipse cx={0} cy={0} rx={58} ry={58} fill="url(#cloud25)" />
+        <Ring cx={0} cy={0} r={38} kind="circle" stroke="#1b5e20" />
         {Array.from({ length: 6 }).map((_, i) => {
-          const [x, y] = V(0, 0, 40, i);
-          const [hx, hy] = V(0, 0, 54, i);
+          const [x, y] = V(0, 0, 38, i);
+          const [hx, hy] = V(0, 0, 50, i);
+          const [lx, ly] = V(0, 0, 58, i);
           return (
             <g key={i}>
               <line x1={x} y1={y} x2={hx} y2={hy} stroke="#1b5e20" strokeWidth={1.2} />
-              <Lab x={V(0, 0, 62, i)[0]} y={V(0, 0, 62, i)[1] + 3.5} t="H" s={9} c="#1b5e20" />
+              <Lab x={lx} y={ly + 3} t="H" s={8.6} c="#1b5e20" />
             </g>
           );
         })}
         {/* góc 120° */}
-        <path d="M0 -14 L0 -40 M0 -14 L12 7" stroke="#c62828" strokeWidth="1" fill="none" />
-        <text x={14} y={-16} fontFamily="monospace" fontSize="9" fill="#c62828" fontWeight="700">120°</text>
-        <text x={0} y={88} textAnchor="middle" fontFamily="sans-serif" fontSize="9" fill="#57534e">
-          nhìn từ trên: vòng tròn = 6 electron π delocalised; góc 120°
+        <path d="M0 -14 L0 -36 M0 -14 L12 7" stroke="#c62828" strokeWidth="1" fill="none" />
+        <text x={14} y={-16} fontFamily="monospace" fontSize="8.6" fill="#c62828" fontWeight="700">120°</text>
+        <text x={0} y={78} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
+          nhìn từ trên — vòng tròn 6 e π
+        </text>
+        <text x={0} y={90} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
+          delocalised; mỗi góc 120°
         </text>
       </g>
-      <text x={230} y={14} textAnchor="middle" fontFamily="sans-serif" fontSize="10" fontWeight="700" fill="#1b5e20">
-        Mỗi C sp²: 3 liên kết σ (2 C–C, 1 C–H) + 1 electron p góp vào hệ π chung
-      </text>
     </svg>
     <figcaption className={CAP25}>
       <strong className="font-bold text-stone-900">Hình 25.4</strong> Liên kết π trong benzene: mỗi carbon sp² góp một
@@ -300,56 +308,69 @@ export const Figure25_4: React.FC = () => (
 /* ==========================================================================
    Bảng 25.2 — Tên một số hợp chất aryl (5 cấu trúc khung)
 ========================================================================== */
-const ARYL25: Array<{ name: string; sub: string; extra?: Array<[number, string]> }> = [
-  { name: 'chlorobenzene', sub: 'Cl' },
-  { name: 'nitrobenzene', sub: 'NO₂' },
-  { name: 'phenol', sub: 'OH' },
-  { name: '2,4,6-tribromophenol', sub: 'OH', extra: [[2, 'Br'], [4, 'Br'], [6, 'Br']] },
-  { name: 'phenylamine', sub: 'NH₂' },
+const ARYL25: Array<{ name: string[]; sub: string; extra?: Array<[number, string]> }> = [
+  { name: ['chlorobenzene'], sub: 'Cl' },
+  { name: ['nitrobenzene'], sub: 'NO₂' },
+  { name: ['phenol'], sub: 'OH' },
+  // –OH ở C1 (đỉnh) nên 3 nguyên tử Br chiếm các đỉnh 2, 4, 6 = i 1, 3, 5
+  { name: ['2,4,6-', 'tribromophenol'], sub: 'OH', extra: [[1, 'Br'], [3, 'Br'], [5, 'Br']] },
+  { name: ['phenylamine'], sub: 'NH₂' },
 ];
 
 export const Table25_2: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 118" className="w-full" role="img" aria-label="Bảng 25.2 các hợp chất aryl">
+    <svg viewBox="0 0 460 132" className="w-full" role="img" aria-label="Bảng 25.2 các hợp chất aryl">
       <Defs25 />
-      <rect x="0" y="0" width="460" height="16" fill="#546e7a" />
-      <text x="8" y="11.5" fontFamily="sans-serif" fontSize="8.6" fill="#fff" fontWeight="700">Công thức khung của hợp chất aryl</text>
-      <text x="300" y="11.5" fontFamily="sans-serif" fontSize="8.6" fill="#fff" fontWeight="700">Tên</text>
+      <rect x="0" y="0" width="460" height="17" fill="#546e7a" />
+      <text x="8" y="12" fontFamily="sans-serif" fontSize="8.4" fill="#fff" fontWeight="700">
+        Công thức khung của hợp chất aryl
+      </text>
       {ARYL25.map((a, i) => {
-        const x = 24 + i * 56;
+        const cx = 32 + i * 52;
         return (
-          <g key={a.name}>
-            <rect x={x - 20} y={16} width="56" height="86" fill={i % 2 ? '#fafafa' : '#fff'} stroke="#e0e0e0" strokeWidth="0.6" />
-            <Ring cx={x + 8} cy={56} r={17} kind="circle" sw={1.3} />
-            <line x1={x + 8} y1={39} x2={x + 8} y2={30} stroke="#263238" strokeWidth={1.2} />
-            <Lab x={x + 8} y={27} t={a.sub} s={8.5} />
+          <g key={a.name.join('')}>
+            <rect x={cx - 26} y={17} width="52" height="86" fill={i % 2 ? '#fafaf8' : '#fff'} stroke="#e0e0e0" strokeWidth="0.6" />
+            <Ring cx={cx} cy={60} r={16} kind="circle" sw={1.3} />
+            <line x1={cx} y1={44} x2={cx} y2={37} stroke="#263238" strokeWidth={1.2} />
+            <Lab x={cx} y={34} t={a.sub} s={8} />
             {a.extra?.map(([pos, g]) => {
-              const [px, py] = V(x + 8, 56, 17, pos % 6);
-              const [gx, gy] = V(x + 8, 56, 26, pos % 6);
+              const [px, py] = V(cx, 60, 16, pos);
+              const [gx, gy] = V(cx, 60, 21, pos);
+              const [lx, ly] = V(cx, 60, 25, pos);
               return (
                 <g key={pos}>
-                  <line x1={px} y1={py} x2={gx} y2={gy} stroke="#263238" strokeWidth={1.2} />
-                  <Lab x={V(x + 8, 56, 33, pos % 6)[0]} y={V(x + 8, 56, 33, pos % 6)[1] + 3} t={g} s={8} />
+                  <line x1={px} y1={py} x2={gx} y2={gy} stroke="#263238" strokeWidth={1.1} />
+                  <Lab x={lx} y={ly + 2.6} t={g} s={7.4} />
                 </g>
               );
             })}
-            <text x={x + 8} y={112} textAnchor="middle" fontFamily="sans-serif" fontSize="7.8" fill="#37474f" fontWeight="600">
-              {a.name}
-            </text>
+            {a.name.map((n, k) => (
+              <text
+                key={n}
+                x={cx}
+                y={112 + k * 8.6}
+                textAnchor="middle"
+                fontFamily="sans-serif"
+                fontSize="7.1"
+                fill="#37474f"
+                fontWeight="600"
+              >
+                {n}
+              </text>
+            ))}
           </g>
         );
       })}
-      <text x="300" y="34" fontFamily="sans-serif" fontSize="8.2" fill="#37474f">
-        Nhóm phenyl viết là C₆H₅–, ví dụ phenylamine:
-      </text>
-      <text x="300" y="48" fontFamily="monospace" fontSize="9" fill="#263238" fontWeight="700">C₆H₅NH₂</text>
-      <text x="300" y="66" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">
-        Với 2,4,6-tribromophenol: đánh số carbon
-      </text>
-      <text x="300" y="78" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">
-        vòng bắt đầu từ C gắn –OH (C1) để mô tả
-      </text>
-      <text x="300" y="90" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">vị trí các nhóm thế Br (2, 4, 6).</text>
+      <g fontFamily="sans-serif" fontSize="8" fill="#57534e">
+        <text x="276" y="32">Nhóm phenyl được viết là C₆H₅–.</text>
+        <text x="276" y="44">Ví dụ với phenylamine:</text>
+        <text x="276" y="58" fontFamily="monospace" fontSize="9" fill="#263238" fontWeight="700">
+          C₆H₅NH₂
+        </text>
+        <text x="276" y="78">Với 2,4,6-tribromophenol, đánh số</text>
+        <text x="276" y="90">vòng bắt đầu từ carbon mang –OH</text>
+        <text x="276" y="102">(C1); các Br nằm ở vị trí 2, 4, 6.</text>
+      </g>
     </svg>
     <figcaption className={CAP25}>
       <strong className="font-bold text-stone-900">Bảng 25.2</strong> Tên một số hợp chất aryl có nhóm chức thế trực
@@ -407,8 +428,8 @@ export const MechBromination: React.FC = () => (
         <text x={0} y={66} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#37474f" fontWeight="700">giai đoạn 3</text>
         <text x={0} y={77} textAnchor="middle" fontFamily="sans-serif" fontSize="7.6" fill="#57534e">C–H đứt dị phân; hoàn nguyên vòng π + xúc tác</text>
       </g>
-      <g fontFamily="monospace" fontSize="10" fill="#263238" fontWeight="700">
-        <text x="300" y="192">→ bromobenzene + HBr + FeBr₃</text>
+      <g fontFamily="monospace" fontSize="9.6" fill="#263238" fontWeight="700">
+        <text x="262" y="196">→ bromobenzene + HBr + FeBr₃</text>
       </g>
     </svg>
     <figcaption className={CAP25}>
@@ -425,36 +446,31 @@ export const MechBromination: React.FC = () => (
 ========================================================================== */
 export const MechSideChain: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 110" className="w-full" role="img" aria-label="Thế mạch nhánh methylbenzene">
+    <svg viewBox="0 0 460 120" className="w-full" role="img" aria-label="Thế mạch nhánh methylbenzene">
       <Defs25 />
-      <g transform="translate(60 55)">
+      <g transform="translate(52 52)">
         <Ring cx={0} cy={0} r={22} kind="circle" />
-        <line x1={0} y1={-22} x2={0} y2={-34} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-38} t="CH₃" s={10} />
-        <text x={0} y={40} textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">methylbenzene</text>
+        <line x1={0} y1={-22} x2={0} y2={-32} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-36} t="CH₃" s={9.5} />
+        <text x={0} y={40} textAnchor="middle" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">methylbenzene</text>
       </g>
-      <text x={105} y={50} fontFamily="monospace" fontSize="11" fill="#263238" fontWeight="700">+ Cl₂</text>
-      <line x1={140} y1={55} x2={195} y2={55} stroke="#37474f" strokeWidth="1.4" markerEnd="url(#arrow25)" />
-      <text x={167} y={46} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#c62828" fontWeight="700">UV / sôi</text>
-      <g transform="translate(250 55)">
+      <text x={102} y={48} fontFamily="monospace" fontSize="10.5" fill="#263238" fontWeight="700">+ Cl₂</text>
+      <line x1={144} y1={52} x2={196} y2={52} stroke="#37474f" strokeWidth="1.4" markerEnd="url(#arrow25)" />
+      <text x={170} y={42} textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#c62828" fontWeight="700">UV / sôi</text>
+      <g transform="translate(248 52)">
         <Ring cx={0} cy={0} r={22} kind="circle" />
-        <line x1={0} y1={-22} x2={0} y2={-34} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-38} t="CH₂Cl" s={9.5} />
-        <text x={0} y={40} textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">(chloromethyl)benzene</text>
+        <line x1={0} y1={-22} x2={0} y2={-32} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-36} t="CH₂Cl" s={9} />
+        <text x={0} y={40} textAnchor="middle" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">(chloromethyl)benzene</text>
       </g>
-      <text x={300} y={50} fontFamily="monospace" fontSize="11" fill="#263238" fontWeight="700">+ HCl</text>
-      <text x={345} y={30} fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
-        KHÔNG thế vào vòng:
-      </text>
-      <text x={345} y={42} fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
-        cơ chế gốc tự do ở mạch nhánh;
-      </text>
-      <text x={345} y={54} fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
-        Cl₂ dư → thay cả 3 H của nhánh
-      </text>
-      <text x={345} y={66} fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
-        (–CCl₃).
-      </text>
+      <text x={302} y={48} fontFamily="monospace" fontSize="10.5" fill="#263238" fontWeight="700">+ HCl</text>
+      <g fontFamily="sans-serif" fontSize="8.2" fill="#57534e">
+        <text x={346} y={22}>KHÔNG thế vào vòng:</text>
+        <text x={346} y={34}>cơ chế gốc tự do ở</text>
+        <text x={346} y={46}>mạch nhánh; Cl₂ dư</text>
+        <text x={346} y={58}>thay cả 3 H của</text>
+        <text x={346} y={70}>nhánh (–CCl₃).</text>
+      </g>
     </svg>
     <figcaption className={CAP25}>
       <strong className="font-bold text-stone-900">Hình 25.M2</strong> Với UV light hoặc nhiệt độ cao, chlorine tấn
@@ -469,47 +485,49 @@ export const MechSideChain: React.FC = () => (
 ========================================================================== */
 export const MechNitration: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 190" className="w-full" role="img" aria-label="Cơ chế nitration benzene">
+    <svg viewBox="0 0 460 215" className="w-full" role="img" aria-label="Cơ chế nitration benzene">
       <Defs25 />
-      <g fontFamily="monospace" fontSize="10.5" fill="#263238" fontWeight="700">
-        <text x="10" y="16">HNO₃ + 2H₂SO₄ → NO₂⁺ + 2HSO₄⁻ + HO⁺</text>
-      </g>
-      <text x="10" y="30" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
+      <text x={10} y={16} fontFamily="monospace" fontSize="10" fill="#263238" fontWeight="700">
+        HNO₃ + 2H₂SO₄ → NO₂⁺ + 2HSO₄⁻ + H₃O⁺
+      </text>
+      <text x={10} y={30} fontFamily="sans-serif" fontSize="8.2" fill="#57534e">
         electrophile NO₂⁺ (nitronium ion) sinh từ hỗn hợp acid đặc; phản ứng ở ≈ 55 °C
       </text>
       {/* giai đoạn 1 */}
-      <g transform="translate(80 110)">
+      <g transform="translate(76 104)">
         <Ring cx={0} cy={0} r={26} kind="circle" />
-        <Lab x={46} y={-16} t="NO₂⁺" s={10} />
-        <Curly d="M6 -14 Q 20 -30 34 -20" />
-        <text x={0} y={46} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#37474f" fontWeight="700">giai đoạn 1</text>
-        <text x={0} y={57} textAnchor="middle" fontFamily="sans-serif" fontSize="7.6" fill="#57534e">cặp e π cho vào N của NO₂⁺</text>
+        <Lab x={48} y={-14} t="NO₂⁺" s={9.6} />
+        <Curly d="M6 -14 Q 20 -30 36 -20" />
+        <text x={0} y={64} textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#37474f" fontWeight="700">giai đoạn 1</text>
+        <text x={0} y={76} textAnchor="middle" fontFamily="sans-serif" fontSize="7.4" fill="#57534e">cặp e π cho vào N của NO₂⁺</text>
       </g>
-      <line x1={130} y1={110} x2={165} y2={110} stroke="#37474f" strokeWidth="1.3" markerEnd="url(#arrow25)" />
+      <line x1={128} y1={104} x2={162} y2={104} stroke="#37474f" strokeWidth="1.3" markerEnd="url(#arrow25)" />
       {/* intermediate */}
-      <g transform="translate(220 110)">
+      <g transform="translate(216 104)">
         <Ring cx={0} cy={0} r={26} kind="plain" />
         <path d="M 13 -22.5 A 26 26 0 1 1 -13 -22.5" fill="none" stroke="#263238" strokeWidth={1.2} />
-        <line x1={0} y1={-26} x2={0} y2={-38} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-42} t="H" s={10} />
-        <line x1={0} y1={26} x2={0} y2={38} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={48} t="NO₂" s={9.5} />
-        <text x={22} y={-30} fontFamily="monospace" fontSize="11" fill="#c62828" fontWeight="700">+</text>
-        <text x={0} y={66} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#37474f" fontWeight="700">giai đoạn 2</text>
-        <text x={0} y={77} textAnchor="middle" fontFamily="sans-serif" fontSize="7.6" fill="#57534e">C–H đứt dị phân, 2 e trả về vòng π</text>
+        <line x1={0} y1={-26} x2={0} y2={-36} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-40} t="H" s={10} />
+        <line x1={0} y1={26} x2={0} y2={36} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={46} t="NO₂" s={9} />
+        <text x={22} y={-28} fontFamily="monospace" fontSize="11" fill="#c62828" fontWeight="700">+</text>
+        <text x={0} y={64} textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#37474f" fontWeight="700">giai đoạn 2</text>
+        <text x={0} y={76} textAnchor="middle" fontFamily="sans-serif" fontSize="7.4" fill="#57534e">C–H đứt dị phân, 2 e trả về vòng π</text>
       </g>
-      <line x1={270} y1={110} x2={305} y2={110} stroke="#37474f" strokeWidth="1.3" markerEnd="url(#arrow25)" />
+      <line x1={266} y1={104} x2={300} y2={104} stroke="#37474f" strokeWidth="1.3" markerEnd="url(#arrow25)" />
       {/* sản phẩm */}
-      <g transform="translate(360 110)">
+      <g transform="translate(352 104)">
         <Ring cx={0} cy={0} r={26} kind="circle" />
-        <line x1={0} y1={26} x2={0} y2={38} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={48} t="NO₂" s={9.5} />
-        <text x={0} y={66} textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#37474f" fontWeight="700">nitrobenzene</text>
-        <text x={0} y={77} textAnchor="middle" fontFamily="monospace" fontSize="8.6" fill="#57534e">+ H⁺</text>
+        <line x1={0} y1={26} x2={0} y2={36} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={46} t="NO₂" s={9} />
+        <text x={0} y={64} textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#37474f" fontWeight="700">nitrobenzene</text>
+        <text x={0} y={76} textAnchor="middle" fontFamily="monospace" fontSize="8.4" fill="#57534e">+ H⁺</text>
       </g>
-      <text x={10} y={186} fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
-        NO₂⁺ hút bởi mật độ electron π; vòng π khôi phục 6 e → giữ vững độ bền thơm. NO₂ là nhóm DEaktivator: thế tiếp
-        vào vị trí 3, 5.
+      <text x={10} y={200} fontFamily="sans-serif" fontSize="8" fill="#57534e">
+        NO₂⁺ bị hút vào mật độ electron π; C–H đứt dị phân trả 2 e về vòng → khôi phục vòng 6 e.
+      </text>
+      <text x={10} y={211} fontFamily="sans-serif" fontSize="8" fill="#57534e">
+        NO₂ là nhóm làm vòng kém hoạt động (deactivator) và định hướng thế tiếp vào vị trí 3, 5.
       </text>
     </svg>
     <figcaption className={CAP25}>
@@ -591,29 +609,31 @@ export const MechFriedelCrafts: React.FC = () => (
 ========================================================================== */
 export const FigOxidation: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 100" className="w-full" role="img" aria-label="Oxidation mạch nhánh">
+    <svg viewBox="0 0 460 112" className="w-full" role="img" aria-label="Oxidation mạch nhánh">
       <Defs25 />
-      <g transform="translate(70 48)">
+      <g transform="translate(66 54)">
         <Ring cx={0} cy={0} r={22} kind="circle" />
-        <line x1={0} y1={-22} x2={0} y2={-34} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-38} t="CH₃" s={10} />
-        <text x={0} y={38} textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">methylbenzene</text>
+        <line x1={0} y1={-22} x2={0} y2={-32} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-36} t="CH₃" s={9.5} />
+        <text x={0} y={40} textAnchor="middle" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">methylbenzene</text>
       </g>
-      <text x={112} y={44} fontFamily="monospace" fontSize="11" fill="#263238" fontWeight="700">+ 3[O]</text>
-      <line x1={150} y1={48} x2={205} y2={48} stroke="#37474f" strokeWidth="1.4" markerEnd="url(#arrow25)" />
-      <text x={177} y={38} textAnchor="middle" fontFamily="sans-serif" fontSize="7.8" fill="#c62828" fontWeight="700">KMnO₄(VII)/OH⁻, hồi lưu;</text>
-      <text x={177} y={60} textAnchor="middle" fontFamily="sans-serif" fontSize="7.8" fill="#c62828" fontWeight="700">rồi H₂SO₄ loãng</text>
-      <g transform="translate(260 48)">
+      <text x={104} y={50} fontFamily="monospace" fontSize="10.5" fill="#263238" fontWeight="700">+ 3[O]</text>
+      <line x1={148} y1={54} x2={198} y2={54} stroke="#37474f" strokeWidth="1.4" markerEnd="url(#arrow25)" />
+      <text x={173} y={30} textAnchor="middle" fontFamily="sans-serif" fontSize="7.4" fill="#c62828" fontWeight="700">KMnO₄(VII)/OH⁻, hồi lưu</text>
+      <text x={173} y={78} textAnchor="middle" fontFamily="sans-serif" fontSize="7.4" fill="#c62828" fontWeight="700">rồi H₂SO₄ loãng</text>
+      <g transform="translate(252 54)">
         <Ring cx={0} cy={0} r={22} kind="circle" />
-        <line x1={0} y1={-22} x2={0} y2={-34} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-38} t="COOH" s={9.5} />
-        <text x={0} y={38} textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">benzoic acid</text>
+        <line x1={0} y1={-22} x2={0} y2={-32} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-36} t="COOH" s={9} />
+        <text x={0} y={40} textAnchor="middle" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">benzoic acid</text>
       </g>
-      <text x={305} y={44} fontFamily="monospace" fontSize="11" fill="#263238" fontWeight="700">+ H₂O</text>
-      <text x={350} y={30} fontFamily="sans-serif" fontSize="8.4" fill="#57534e">alkane thường KHÔNG bị</text>
-      <text x={350} y={42} fontFamily="sans-serif" fontSize="8.4" fill="#57534e">KMnO₄(VII) oxy hóa — vòng</text>
-      <text x={350} y={54} fontFamily="sans-serif" fontSize="8.4" fill="#57534e">benzene đã “kích hoạt” mạch</text>
-      <text x={350} y={66} fontFamily="sans-serif" fontSize="8.4" fill="#57534e">nhánh thành –COOH.</text>
+      <text x={294} y={50} fontFamily="monospace" fontSize="10.5" fill="#263238" fontWeight="700">+ H₂O</text>
+      <g fontFamily="sans-serif" fontSize="8.2" fill="#57534e">
+        <text x={340} y={26}>alkane thường KHÔNG bị</text>
+        <text x={340} y={38}>KMnO₄(VII) oxy hóa —</text>
+        <text x={340} y={50}>vòng benzene “kích hoạt”</text>
+        <text x={340} y={62}>mạch nhánh thành –COOH.</text>
+      </g>
     </svg>
     <figcaption className={CAP25}>
       <strong className="font-bold text-stone-900">Hình 25.M5</strong> Hồi lưu methylbenzene với kiềm
@@ -671,38 +691,46 @@ export const Figure25_5: React.FC = () => (
 ========================================================================== */
 export const FigPhenoxide: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 120" className="w-full" role="img" aria-label="Delocalisation trong phenoxide">
+    <svg viewBox="0 0 460 122" className="w-full" role="img" aria-label="Delocalisation trong phenoxide">
       <Defs25 />
-      <g transform="translate(70 60)">
+      <g transform="translate(64 60)">
         <Ring cx={0} cy={0} r={24} kind="circle" />
-        <line x1={0} y1={-24} x2={0} y2={-36} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-40} t="O⁻" s={10} />
-        <text x={0} y={42} textAnchor="middle" fontFamily="sans-serif" fontSize="7.8" fill="#57534e">điện tích âm trên O</text>
+        <line x1={0} y1={-24} x2={0} y2={-34} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-38} t="O⁻" s={9.5} />
+        <text x={0} y={44} textAnchor="middle" fontFamily="sans-serif" fontSize="7.6" fill="#57534e">điện tích âm trên O</text>
       </g>
-      <line x1={115} y1={60} x2={165} y2={60} stroke="#37474f" strokeWidth="1.2" markerEnd="url(#arrow25)" />
-      <line x1={165} y1={66} x2={115} y2={66} stroke="#37474f" strokeWidth="1.2" markerEnd="url(#arrow25)" />
-      <g transform="translate(225 60)">
+      <line x1={104} y1={56} x2={150} y2={56} stroke="#37474f" strokeWidth="1.2" markerEnd="url(#arrow25)" />
+      <line x1={150} y1={64} x2={104} y2={64} stroke="#37474f" strokeWidth="1.2" markerEnd="url(#arrow25)" />
+      <g transform="translate(206 60)">
         <Ring cx={0} cy={0} r={24} kind="kekule" />
-        <line x1={0} y1={-24} x2={0} y2={-36} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-40} t="O" s={10} />
-        <text x={26} y={-30} fontFamily="monospace" fontSize="10" fill="#c62828" fontWeight="700">δ−</text>
-        {[2, 4, 6].map((p) => (
-          <text key={p} x={V(0, 0, 32, p % 6)[0]} y={V(0, 0, 32, p % 6)[1] + 3} fontFamily="monospace" fontSize="9" fill="#c62828" fontWeight="700">δ−</text>
+        <line x1={0} y1={-24} x2={0} y2={-34} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-38} t="O" s={9.5} />
+        <text x={24} y={-30} textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#c62828" fontWeight="700">δ−</text>
+        {[1, 3, 5].map((p) => (
+          <text
+            key={p}
+            x={V(0, 0, 30, p)[0]}
+            y={V(0, 0, 30, p)[1] + 3}
+            textAnchor="middle"
+            fontFamily="monospace"
+            fontSize="8.6"
+            fill="#c62828"
+            fontWeight="700"
+          >
+            δ−
+          </text>
         ))}
-        <text x={0} y={42} textAnchor="middle" fontFamily="sans-serif" fontSize="7.8" fill="#57534e">điện tích âm trải khắp ion</text>
+        <text x={0} y={44} textAnchor="middle" fontFamily="sans-serif" fontSize="7.6" fill="#57534e">điện tích âm trải khắp ion</text>
       </g>
-      <text x={300} y={34} fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
-        Cặp electron tự do trên O⁻ xen phủ
-      </text>
-      <text x={300} y={46} fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
-        với hệ π của vòng → mật độ điện tích
-      </text>
-      <text x={300} y={58} fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
-        âm giảm → ion bền → phenol dễ nhả H⁺
-      </text>
-      <text x={300} y={70} fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
-        hơn nước &amp; ethanol (pKₐ 10,0 &lt; 14,0 &lt; 16,0).
-      </text>
+      <g fontFamily="sans-serif" fontSize="8" fill="#57534e">
+        <text x={282} y={24}>Cặp electron tự do trên O⁻ xen phủ</text>
+        <text x={282} y={36}>với hệ π của vòng → mật độ âm</text>
+        <text x={282} y={48}>loãng ra → ion bền hơn → phenol</text>
+        <text x={282} y={60}>nhả H⁺ dễ hơn nước &amp; ethanol:</text>
+        <text x={282} y={76} fontFamily="monospace" fontSize="8.4" fill="#8c1d13" fontWeight="700">
+          pKₐ 10,0 &lt; 14,0 &lt; 16,0
+        </text>
+      </g>
     </svg>
     <figcaption className={CAP25}>
       <strong className="font-bold text-stone-900">Hình 25.P1</strong> Vì sao phenol acid mạnh hơn nước và ethanol:
@@ -716,32 +744,33 @@ export const FigPhenoxide: React.FC = () => (
 export const Figure25_6: React.FC = () => (
   <figure className="my-3">
     <div className="relative overflow-hidden rounded-md border border-stone-300 shadow-sm bg-gradient-to-b from-[#e3f2fd] to-[#bbdefb]">
-      <svg viewBox="0 0 420 170" className="w-full" role="img" aria-label="Bromine water thêm vào phenol">
+      <svg viewBox="0 0 460 184" className="w-full" role="img" aria-label="Bromine water thêm vào phenol">
         <Defs25 />
         {/* ống 1: bromine water cam */}
-        <g transform="translate(120 20)">
+        <g transform="translate(106 22)">
           <rect x="-14" y="0" width="28" height="110" rx="13" fill="#ffffff" opacity="0.55" stroke="#78909c" strokeWidth="1.4" />
           <rect x="-11" y="34" width="22" height="72" rx="10" fill="url(#brwater25)" />
-          <text x="0" y="130" textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#37474f" fontWeight="700">bromine water (cam)</text>
+          <text x="0" y="130" textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#37474f" fontWeight="700">bromine water (cam)</text>
         </g>
-        <path d="M150 75 Q 185 55 215 72" fill="none" stroke="#37474f" strokeWidth="1.4" markerEnd="url(#arrow25)" />
-        <text x="182" y="48" textAnchor="middle" fontFamily="sans-serif" fontSize="8.2" fill="#37474f">đổ vào dung dịch</text>
-        <text x="182" y="59" textAnchor="middle" fontFamily="sans-serif" fontSize="8.2" fill="#37474f">phenol, nhiệt độ phòng</text>
+        <path d="M138 84 Q 176 62 208 80" fill="none" stroke="#37474f" strokeWidth="1.4" markerEnd="url(#arrow25)" />
+        <text x={172} y={54} textAnchor="middle" fontFamily="sans-serif" fontSize="8" fill="#37474f">đổ vào dung dịch</text>
+        <text x={172} y={66} textAnchor="middle" fontFamily="sans-serif" fontSize="8" fill="#37474f">phenol, nhiệt độ phòng</text>
         {/* ống 2: mất màu + kết tủa trắng */}
-        <g transform="translate(260 20)">
+        <g transform="translate(250 22)">
           <rect x="-14" y="0" width="28" height="110" rx="13" fill="#ffffff" opacity="0.55" stroke="#78909c" strokeWidth="1.4" />
           <rect x="-11" y="34" width="22" height="72" rx="10" fill="#eceff1" />
           {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
             <circle key={i} cx={-7 + (i % 4) * 5} cy={86 + Math.floor(i / 4) * 8} r="2.4" fill="#fff" stroke="#b0bec5" strokeWidth="0.6" />
           ))}
-          <text x="0" y="130" textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#37474f" fontWeight="700">mất màu + kết tủa trắng</text>
-          <text x="0" y="141" textAnchor="middle" fontFamily="sans-serif" fontSize="8" fill="#57534e">2,4,6-tribromophenol</text>
+          <text x="0" y="130" textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#37474f" fontWeight="700">mất màu + kết tủa trắng</text>
+          <text x="0" y="141" textAnchor="middle" fontFamily="sans-serif" fontSize="7.8" fill="#57534e">2,4,6-tribromophenol</text>
         </g>
         {/* phương trình */}
-        <g transform="translate(330 60)" fontFamily="monospace" fontSize="9" fill="#263238" fontWeight="700">
+        <g transform="translate(320 62)" fontFamily="monospace" fontSize="8.6" fill="#263238" fontWeight="700">
           <text x="0" y="0">phenol + 3Br₂</text>
-          <text x="0" y="14">→ 2,4,6-tribromophenol</text>
-          <text x="0" y="28">+ 3HBr</text>
+          <text x="0" y="15">→ 2,4,6-</text>
+          <text x="0" y="30">tribromophenol</text>
+          <text x="0" y="45">+ 3HBr</text>
         </g>
       </svg>
     </div>
@@ -758,47 +787,56 @@ export const Figure25_6: React.FC = () => (
 ========================================================================== */
 export const FigPhenolNitration: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 120" className="w-full" role="img" aria-label="Nitration phenol">
+    <svg viewBox="0 0 460 210" className="w-full" role="img" aria-label="Nitration phenol">
       <Defs25 />
-      <g transform="translate(55 55)">
+      <g transform="translate(52 52)">
         <Ring cx={0} cy={0} r={22} kind="circle" />
-        <line x1={0} y1={-22} x2={0} y2={-33} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-37} t="OH" s={9.5} />
-        <text x={0} y={38} textAnchor="middle" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">phenol</text>
+        <line x1={0} y1={-22} x2={0} y2={-32} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-36} t="OH" s={9.5} />
+        <text x={0} y={54} textAnchor="middle" fontFamily="sans-serif" fontSize="8" fill="#57534e">phenol</text>
       </g>
-      <line x1={92} y1={55} x2={140} y2={55} stroke="#37474f" strokeWidth="1.3" markerEnd="url(#arrow25)" />
-      <text x={116} y={45} textAnchor="middle" fontFamily="sans-serif" fontSize="7.8" fill="#c62828" fontWeight="700">dil. HNO₃,</text>
-      <text x={116} y={68} textAnchor="middle" fontFamily="sans-serif" fontSize="7.8" fill="#c62828" fontWeight="700">nhiệt độ phòng</text>
-      <g transform="translate(190 55)">
+      <line x1={90} y1={52} x2={132} y2={52} stroke="#37474f" strokeWidth="1.3" markerEnd="url(#arrow25)" />
+      <text x={111} y={30} textAnchor="middle" fontFamily="sans-serif" fontSize="7.6" fill="#c62828" fontWeight="700">dil. HNO₃,</text>
+      <text x={111} y={78} textAnchor="middle" fontFamily="sans-serif" fontSize="7.6" fill="#c62828" fontWeight="700">nhiệt độ phòng</text>
+      <g transform="translate(186 52)">
         <Ring cx={0} cy={0} r={22} kind="circle" />
-        <line x1={0} y1={-22} x2={0} y2={-33} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-37} t="OH" s={9.5} />
-        <line x1={V(0, 0, 22, 1)[0]} y1={V(0, 0, 22, 1)[1]} x2={V(0, 0, 32, 1)[0]} y2={V(0, 0, 32, 1)[1]} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={V(0, 0, 41, 1)[0]} y={V(0, 0, 41, 1)[1] + 3} t="NO₂" s={8.6} />
-        <text x={0} y={38} textAnchor="middle" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">2-nitrophenol</text>
+        <line x1={0} y1={-22} x2={0} y2={-32} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-36} t="OH" s={9.5} />
+        <line x1={V(0, 0, 22, 1)[0]} y1={V(0, 0, 22, 1)[1]} x2={V(0, 0, 30, 1)[0]} y2={V(0, 0, 30, 1)[1]} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={V(0, 0, 38, 1)[0]} y={V(0, 0, 38, 1)[1] + 2.6} t="NO₂" s={8.2} />
+        <text x={0} y={54} textAnchor="middle" fontFamily="sans-serif" fontSize="8" fill="#57534e">2-nitrophenol</text>
       </g>
-      <text x={243} y={59} fontFamily="monospace" fontSize="11" fill="#263238" fontWeight="700">+</text>
-      <g transform="translate(300 55)">
+      <text x={244} y={56} fontFamily="monospace" fontSize="11" fill="#263238" fontWeight="700">+</text>
+      <g transform="translate(306 52)">
         <Ring cx={0} cy={0} r={22} kind="circle" />
-        <line x1={0} y1={-22} x2={0} y2={-33} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={-37} t="OH" s={9.5} />
-        <line x1={0} y1={22} x2={0} y2={33} stroke="#263238" strokeWidth={1.3} />
-        <Lab x={0} y={43} t="NO₂" s={8.6} />
-        <text x={0} y={56} textAnchor="middle" fontFamily="sans-serif" fontSize="8.2" fill="#57534e">4-nitrophenol</text>
+        <line x1={0} y1={-22} x2={0} y2={-32} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={-36} t="OH" s={9.5} />
+        <line x1={0} y1={22} x2={0} y2={32} stroke="#263238" strokeWidth={1.3} />
+        <Lab x={0} y={42} t="NO₂" s={8.2} />
+        <text x={0} y={54} textAnchor="middle" fontFamily="sans-serif" fontSize="8" fill="#57534e">4-nitrophenol</text>
       </g>
-      <g transform="translate(395 40)" fontFamily="sans-serif" fontSize="8" fill="#57534e">
-        <text x="0" y="0">HNO₃ đặc →</text>
-        <text x="0" y="12">2,4,6-trinitrophenol</text>
-        <text x="0" y="24">(–OH ở C1; NO₂ ở 2,4,6)</text>
+      <line x1={16} y1={120} x2={444} y2={120} stroke="#d6d3d1" strokeWidth="0.8" />
+      <g fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
+        <text x={16} y={140} fontWeight="700" fill="#8c1d13">Với HNO₃ đặc, đun nóng:</text>
+        <text x={16} y={154}>thu được 2,4,6-trinitrophenol (acid picric)</text>
+        <text x={16} y={166}>–OH ở C1, ba nhóm –NO₂ ở vị trí 2, 4, 6</text>
+        <text x={16} y={178}>→ kết tủa vàng cam đặc trưng.</text>
       </g>
-      <g transform="translate(395 78)">
-        <Ring cx={0} cy={0} r={15} kind="circle" sw={1.2} />
-        <line x1={0} y1={-15} x2={0} y2={-22} stroke="#263238" strokeWidth={1.1} />
-        <Lab x={0} y={-25} t="OH" s={7.6} />
-        {[[2, ''], [4, ''], [6, '']].map(([p]) => (
-          <g key={p as number}>
-            <line x1={V(0, 0, 15, (p as number) % 6)[0]} y1={V(0, 0, 15, (p as number) % 6)[1]} x2={V(0, 0, 22, (p as number) % 6)[0]} y2={V(0, 0, 22, (p as number) % 6)[1]} stroke="#263238" strokeWidth={1.1} />
-            <Lab x={V(0, 0, 29, (p as number) % 6)[0]} y={V(0, 0, 29, (p as number) % 6)[1] + 2.6} t="NO₂" s={6.8} />
+      <g transform="translate(358 158)">
+        <Ring cx={0} cy={0} r={17} kind="circle" sw={1.2} />
+        <line x1={0} y1={-17} x2={0} y2={-24} stroke="#263238" strokeWidth={1.1} />
+        <Lab x={0} y={-27} t="OH" s={7.6} />
+        {[1, 3, 5].map((p) => (
+          <g key={p}>
+            <line
+              x1={V(0, 0, 17, p)[0]}
+              y1={V(0, 0, 17, p)[1]}
+              x2={V(0, 0, 24, p)[0]}
+              y2={V(0, 0, 24, p)[1]}
+              stroke="#263238"
+              strokeWidth={1}
+            />
+            <Lab x={V(0, 0, 31, p)[0]} y={V(0, 0, 31, p)[1] + 2.4} t="NO₂" s={7} />
           </g>
         ))}
       </g>

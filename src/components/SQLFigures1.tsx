@@ -48,19 +48,19 @@ export const FigSQL_Messy: React.FC = () => (
         {/* đống giấy ghi chú */}
         <g fontFamily="sans-serif">
           {[
-            [18, 26, -8, 'Boston! ngân sách $2.000?'],
-            [40, 62, 5, 'Rome — Ý, trời ấm, tàu hỏa'],
-            [12, 96, -4, 'Bangkok: ẩm thực, chợ nổi…'],
-            [52, 124, 7, 'Sydney $4.000 máy bay'],
-            [86, 40, 3, 'Newport (USA) đi xe?'],
-            [92, 100, -6, 'Cape Town, Nam Phi!!'],
+            [4, 14, -3, 'Boston! ngân sách $2.000'],
+            [104, 14, 2, 'Rome — Ý, ấm, tàu hỏa'],
+            [4, 54, 2, 'Bangkok: chợ nổi, ẩm thực'],
+            [104, 54, -2, 'Sydney $4.000, máy bay'],
+            [4, 94, -2, 'Newport (USA) — đi xe?'],
+            [104, 94, 3, 'Cape Town, Nam Phi!!'],
           ].map(([x, y, r, t], i) => (
             <g key={i} transform={`translate(${x} ${y}) rotate(${r})`}>
-              <rect width="112" height="26" rx="2" fill={i % 2 ? '#fff8c4' : '#ffe9a8'} stroke="#d9b23c" strokeWidth="0.8" />
-              <text x="6" y="17" fontSize="7.6" fill="#6b5410">{t as string}</text>
+              <rect width="100" height="24" rx="2" fill={i % 2 ? '#fff8c4' : '#ffe9a8'} stroke="#d9b23c" strokeWidth="0.8" />
+              <text x="6" y="16" fontSize="7.2" fill="#6b5410">{t as string}</text>
             </g>
           ))}
-          <text x="100" y="164" textAnchor="middle" fontSize="9" fill="#8a6d1a" fontWeight="700">
+          <text x="190" y="164" textAnchor="middle" fontSize="9" fill="#8a6d1a" fontWeight="700">
             sổ tay + mẩu giấy của Abby: quá tải, không tìm lại được!
           </text>
         </g>
@@ -71,8 +71,11 @@ export const FigSQL_Messy: React.FC = () => (
           </marker>
         </defs>
         <path d="M212 85 Q 236 60 258 80" fill="none" stroke="#00758f" strokeWidth="2" markerEnd="url(#sqlArrow1)" />
-        <text x="235" y="52" textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#00758f" fontWeight="700">
-          đưa vào CSDL quan hệ
+        <text x="206" y="42" fontFamily="sans-serif" fontSize="8.2" fill="#00758f" fontWeight="700">
+          đưa vào
+        </text>
+        <text x="206" y="54" fontFamily="sans-serif" fontSize="8.2" fill="#00758f" fontWeight="700">
+          CSDL quan hệ
         </text>
         {/* bảng trật tự */}
         <g transform="translate(268 22)" fontFamily="monospace">
@@ -161,13 +164,13 @@ export const FigSQL_Categories: React.FC = () => (
 ========================================================================== */
 export const FigSQL_Anatomy: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 190" className="w-full" role="img" aria-label="Giải phẫu một bảng SQL">
+    <svg viewBox="0 0 560 200" className="w-full" role="img" aria-label="Giải phẫu một bảng SQL">
       <defs>
         <marker id="sqlArrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
           <path d="M0,0 L10,5 L0,10 z" fill="#c62828" />
         </marker>
       </defs>
-      <text x="150" y="14" textAnchor="middle" fontFamily="monospace" fontSize="12" fontWeight="700" fill="#00556b">
+      <text x="150" y="16" textAnchor="middle" fontFamily="monospace" fontSize="12" fontWeight="700" fill="#00556b">
         city_list
       </text>
       <g transform="translate(40 22)" fontFamily="monospace">
@@ -196,16 +199,16 @@ export const FigSQL_Anatomy: React.FC = () => (
         <rect x="112" y={20 + 2 * 18} width="106" height="18" fill="none" stroke="#5c2d75" strokeWidth="1.8" />
       </g>
       <g fontFamily="sans-serif" fontSize="9">
-        <path d="M95 20 Q 95 8 130 10" fill="none" stroke="#c62828" strokeWidth="1.3" markerEnd="url(#sqlArrow2)" />
-        <text x="136" y="12" fill="#c62828" fontWeight="700">CỘT (column) = một danh mục thông tin</text>
-        <text x="136" y="23" fill="#c62828">còn gọi là FIELD; vd cột city: plane, train, car…</text>
-        <path d="M262 130 Q 300 130 312 118" fill="none" stroke="#2e7d32" strokeWidth="1.3" markerEnd="url(#sqlArrow2)" />
-        <text x="318" y="112" fill="#2e7d32" fontWeight="700">HÀNG (row) = một bản ghi (record)</text>
-        <text x="318" y="123" fill="#2e7d32">toàn bộ thông tin về MỘT đối tượng:</text>
-        <text x="318" y="134" fill="#2e7d32">Sydney, Australia, $4,000, warm, plane</text>
-        <path d="M212 78 Q 260 60 310 66" fill="none" stroke="#5c2d75" strokeWidth="1.3" markerEnd="url(#sqlArrow2)" />
-        <text x="318" y="62" fill="#5c2d75" fontWeight="700">Ô (cell) = một GIÁ TRỊ (value)</text>
-        <text x="318" y="73" fill="#5c2d75">giao của một hàng và một cột</text>
+        <path d="M152 26 Q 210 12 296 18" fill="none" stroke="#c62828" strokeWidth="1.3" markerEnd="url(#sqlArrow2)" />
+        <text x="300" y="20" fill="#c62828" fontWeight="700">CỘT (column) = một danh mục</text>
+        <text x="300" y="31" fill="#c62828">còn gọi là FIELD, ví dụ cột city</text>
+        <path d="M258 122 Q 276 122 296 112" fill="none" stroke="#2e7d32" strokeWidth="1.3" markerEnd="url(#sqlArrow2)" />
+        <text x="300" y="114" fill="#2e7d32" fontWeight="700">HÀNG (row) = một bản ghi</text>
+        <text x="300" y="125" fill="#2e7d32">toàn bộ thông tin về MỘT thành phố:</text>
+        <text x="300" y="136" fill="#2e7d32">Sydney · Australia · $4,000 · warm</text>
+        <path d="M212 74 Q 256 68 296 64" fill="none" stroke="#5c2d75" strokeWidth="1.3" markerEnd="url(#sqlArrow2)" />
+        <text x="300" y="66" fill="#5c2d75" fontWeight="700">Ô (cell) = một GIÁ TRỊ</text>
+        <text x="300" y="77" fill="#5c2d75">giao của một hàng và một cột</text>
         <text x="20" y="176" fill="#57534e">
           Bảng city_list: 2 cột × 6 hàng. Mỗi cột một danh mục; mỗi hàng một thành phố Abby muốn tới.
         </text>
@@ -280,7 +283,7 @@ export const FigSQL_DbHierarchy: React.FC = () => (
 ========================================================================== */
 export const FigSQL_FirstCommands: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 150" className="w-full" role="img" aria-label="Giải phẫu lệnh CREATE DATABASE và USE">
+    <svg viewBox="0 0 520 162" className="w-full" role="img" aria-label="Giải phẫu lệnh CREATE DATABASE và USE">
       <defs>
         <marker id="sqlArrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
           <path d="M0,0 L10,5 L0,10 z" fill="#546e7a" />
@@ -296,14 +299,15 @@ export const FigSQL_FirstCommands: React.FC = () => (
         <text x="282" y="74">travel_db là TÊN database</text>
         <text x="282" y="84">(chữ thường, không dấu cách)</text>
         <path d="M306 30 Q 340 24 352 34" fill="none" stroke="#c62828" strokeWidth="1.2" markerEnd="url(#sqlArrow3)" />
-        <text x="356" y="30" fill="#c62828" fontWeight="700">kết thúc bằng DẤU CHẤM PHẨY ;</text>
-        <text x="356" y="40" fill="#c62828">MySQL bắt buộc; thiếu → console “treo” chờ thêm</text>
+        <text x="356" y="26" fill="#c62828" fontWeight="700">kết thúc bằng dấu chấm phẩy ;</text>
+        <text x="356" y="39" fill="#c62828">MySQL bắt buộc — thiếu ; thì</text>
+        <text x="356" y="50" fill="#c62828">console “treo” chờ thêm lệnh</text>
       </g>
       {/* console */}
       <g transform="translate(60 96)">
         <rect width="340" height="14" fill="#fff" stroke="#90a4ae" strokeWidth="0.8" />
         <text x="6" y="10" fontFamily="sans-serif" fontSize="7.6" fill="#37474f" fontWeight="700">SQL RDBMS console</text>
-        <rect y="14" width="340" height="34" fill="#4d4d4d" />
+        <rect y="14" width="340" height="48" fill="#4d4d4d" />
         <text x="8" y="27" fontFamily="monospace" fontSize="8.6" fill="#9fd3ff">mysql&gt; <tspan fill="#fff">CREATE DATABASE travel_db;</tspan></text>
         <text x="8" y="40" fontFamily="monospace" fontSize="8.6" fill="#e6e6e6">Query OK, 1 row affected (0.04 sec)</text>
         <text x="8" y="52" fontFamily="monospace" fontSize="8.6" fill="#9fd3ff">mysql&gt; <tspan fill="#fff">USE travel_db;</tspan>   <tspan fill="#e6e6e6">→ Database changed</tspan></text>
@@ -374,30 +378,31 @@ export const FigSQL_CreateTableAnatomy: React.FC = () => (
 ========================================================================== */
 export const FigSQL_Steps: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 96" className="w-full" role="img" aria-label="Ba bước tạo bảng SQL">
+    <svg viewBox="0 0 460 112" className="w-full" role="img" aria-label="Ba bước tạo bảng SQL">
       <defs>
         <marker id="sqlArrow4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
           <path d="M0,0 L10,5 L0,10 z" fill="#00758f" />
         </marker>
       </defs>
       {[
-        ['1', 'CREATE DATABASE ten_db;', 'tạo database chứa bảng (nếu chưa có)'],
-        ['2', 'USE ten_db;', 'chuyển RDBMS vào database đó'],
-        ['3', 'CREATE TABLE ten_bang (…);', 'đặt tên bảng + khai báo cột & kiểu dữ liệu'],
-      ].map(([n, c, d], i) => {
+        ['1', 'CREATE DATABASE ten_db;', 'tạo database chứa bảng', '(nếu chưa có)'],
+        ['2', 'USE ten_db;', 'chuyển RDBMS vào', 'database đó'],
+        ['3', 'CREATE TABLE ten_bang (…);', 'đặt tên bảng + khai báo', 'cột & kiểu dữ liệu'],
+      ].map(([n, c, d1, d2], i) => {
         const x = 10 + i * 152;
         return (
           <g key={n} fontFamily="sans-serif">
-            <rect x={x} y={10} width="140" height="66" rx="8" fill={i === 2 ? '#e0f2f6' : '#f6f4ee'} stroke={i === 2 ? '#00758f' : '#b0a88f'} strokeWidth="1.3" />
+            <rect x={x} y={10} width="140" height="74" rx="8" fill={i === 2 ? '#e0f2f6' : '#f6f4ee'} stroke={i === 2 ? '#00758f' : '#b0a88f'} strokeWidth="1.3" />
             <circle cx={x + 16} cy={26} r="9" fill="#00758f" />
             <text x={x + 16} y={29.5} textAnchor="middle" fontSize="10" fill="#fff" fontWeight="800">{n}</text>
-            <text x={x + 32} y={29} fontFamily="monospace" fontSize="8.6" fill="#00556b" fontWeight="700">{c}</text>
-            <text x={x + 10} y={48} fontSize="7.8" fill="#57534e">{d}</text>
-            {i < 2 && <path d={`M${x + 142} 43 L${x + 150} 43`} stroke="#00758f" strokeWidth="1.6" markerEnd="url(#sqlArrow4)" />}
+            <text x={x + 8} y={46} fontFamily="monospace" fontSize="7.8" fill="#00556b" fontWeight="700">{c}</text>
+            <text x={x + 8} y={62} fontSize="7.2" fill="#57534e">{d1}</text>
+            <text x={x + 8} y={72} fontSize="7.2" fill="#57534e">{d2}</text>
+            {i < 2 && <path d={`M${x + 142} 47 L${x + 150} 47`} stroke="#00758f" strokeWidth="1.6" markerEnd="url(#sqlArrow4)" />}
           </g>
         );
       })}
-      <text x="230" y="90" textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
+      <text x="230" y="102" textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
         Quy trình chuẩn của chương 1 — áp dụng cho mọi bảng bạn sẽ tạo trong sách.
       </text>
     </svg>
@@ -410,7 +415,7 @@ export const FigSQL_Steps: React.FC = () => (
 
 export const FigSQL_DataTypes: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 170" className="w-full" role="img" aria-label="Các kiểu dữ liệu phổ biến">
+    <svg viewBox="0 0 460 164" className="w-full" role="img" aria-label="Các kiểu dữ liệu phổ biến">
       {[
         { t: 'VĂN BẢN', c: '#00758f', items: [['CHAR(n)', 'độ dài CỐ ĐỊNH n ký tự', 'CHAR(2): “CA”'], ['VARCHAR(n)', 'độ dài THAY ĐỔI ≤ n', 'VARCHAR(25): “Boston”'] ] },
         { t: 'SỐ', c: '#c66a00', items: [['INT / INTEGER', 'số nguyên, kể cả âm', '-42, 0, 4000'], ['DEC / DECIMAL', 'số có thập phân', '19.99, 3.50'] ] },
@@ -433,9 +438,14 @@ export const FigSQL_DataTypes: React.FC = () => (
           </g>
         );
       })}
-      <text x="8" y="160" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
+      <text x="8" y="128" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
         Kiểu dữ liệu báo cho RDBMS biết phép toán nào được phép (tính toán chỉ trên cột số) và cấp bao nhiêu bộ nhớ.
-        CHAR/CHARACTER, INTEGER/INT, DECIMAL/DEC là cặp tên dùng thay nhau được. Tên kiểu có thể khác giữa các RDBMS.
+      </text>
+      <text x="8" y="140" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
+        CHAR/CHARACTER, INTEGER/INT, DECIMAL/DEC là các cặp tên dùng thay nhau được.
+      </text>
+      <text x="8" y="152" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
+        Tên kiểu có thể khác nhau giữa các RDBMS.
       </text>
     </svg>
     <figcaption className={SQL_CAP}>
@@ -451,7 +461,7 @@ export const FigSQL_DataTypes: React.FC = () => (
 ========================================================================== */
 export const FigSQL_DropRecreate: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 130" className="w-full" role="img" aria-label="DROP TABLE rồi tạo lại với cột mới">
+    <svg viewBox="0 0 540 130" className="w-full" role="img" aria-label="DROP TABLE rồi tạo lại với cột mới">
       <defs>
         <marker id="sqlArrow5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
           <path d="M0,0 L10,5 L0,10 z" fill="#c62828" />
@@ -462,10 +472,9 @@ export const FigSQL_DropRecreate: React.FC = () => (
         <rect width="110" height="14" fill="#90a4ae" />
         <text x="8" y="10.5" fontSize="8.4" fill="#fff" fontWeight="700">locations (cũ)</text>
         <rect y="14" width="110" height="40" fill="#fff" stroke="#b0bec5" strokeWidth="0.7" />
-        <text x="8" y="27" fontSize="7.6" fill="#37474f">city · country · budget</text>
-        <text x="8" y="39" fontSize="7.6" fill="#37474f">weather · … (8 cột)</text>
-        <line x1="0" y1="0" x2="110" y2="54" stroke="#c62828" strokeWidth="1.6" />
-        <line x1="110" y1="0" x2="0" y2="54" stroke="#c62828" strokeWidth="1.6" />
+        <text x="6" y="27" fontSize="7.1" fill="#37474f">city · country · budget</text>
+        <text x="6" y="39" fontSize="7.1" fill="#37474f">weather · … (8 cột)</text>
+        <rect x="0.8" y="0.8" width="108.4" height="52.4" rx="2" fill="none" stroke="#c62828" strokeWidth="1.4" strokeDasharray="5 3" />
       </g>
       <text x="75" y="92" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#c62828" fontWeight="700">DROP TABLE locations;</text>
       <text x="75" y="104" textAnchor="middle" fontFamily="sans-serif" fontSize="7.8" fill="#c62828">xóa bảng + TOÀN BỘ dữ liệu!</text>

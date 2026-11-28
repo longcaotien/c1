@@ -10,4 +10,67 @@
 html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  scroll-padding-top: 7rem;
+}
+
+body {
+  background-color: #e7e5e4;
+}
+
+::selection {
+  background-color: #f4d3c4;
+  color: #3f2a1d;
+}
+
+/* --------------------------------------------------------------------------
+   HÌNH VẼ SVG: nét mảnh vẫn sắc, chữ canh đều, và báo hiệu "bấm để phóng to"
+-------------------------------------------------------------------------- */
+figure {
+  position: relative;
+}
+
+figure svg[role='img'] {
+  cursor: zoom-in;
+  shape-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
+  transition: filter 150ms ease;
+}
+
+figure:hover svg[role='img'] {
+  filter: drop-shadow(0 2px 6px rgb(28 25 23 / 0.18));
+}
+
+figure:has(svg[role='img']):hover::after {
+  content: '⤢ Bấm để phóng to';
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  z-index: 5;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: rgb(28 25 23 / 0.72);
+  color: #fafaf9;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER: không cho nhãn nút tự ngắt thành 3 dòng (làm header cao gần hết màn hình
+   trên laptop), và cho thanh công cụ cuộn ngang khi thiếu chỗ.
+-------------------------------------------------------------------------- */
+header button {
+  white-space: nowrap;
+}
+
+header .header-toolbar {
+  scrollbar-width: thin;
+}
+
+@media print {
+  figure::after {
+    display: none !important;
+  }
 }

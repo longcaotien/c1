@@ -9,6 +9,7 @@ import { TextbookPages25 } from './components/TextbookPages25';
 import { StudyExtras25 } from './components/StudyExtras25';
 import { MathChapter1 } from './components/MathChapter1';
 import { BiologyPlaceholder } from './components/BiologyPlaceholder';
+import { FigureZoom } from './components/FigureZoom';
 import { FULL_LATEX_DOCUMENT } from './data/latexSource';
 import { LATEX_SECTIONS_18, FULL_LATEX_DOCUMENT_18 } from './data/latexSource18';
 import { LATEX_SECTIONS_13, FULL_LATEX_DOCUMENT_13 } from './data/latexSource13';
@@ -184,8 +185,8 @@ export function App() {
   return (
     <div className="min-h-screen bg-stone-200/80 text-stone-900 flex flex-col">
       {/* Top Navigation & Control Header */}
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-stone-300 shadow-xs print:hidden">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-3">
+      <header className="lg:sticky lg:top-0 z-30 bg-white/95 backdrop-blur border-b border-stone-300 shadow-xs print:hidden">
+        <div className="max-w-[1600px] mx-auto px-3 sm:px-6 py-2.5">
           <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3">
             {/* Brand & Document Title */}
             <div className="flex items-center gap-3">
@@ -220,7 +221,7 @@ export function App() {
                       ? 'SQL · Head First SQL (2nd Edition)'
                       : 'Cambridge AS & A Level Chemistry'}
                   </span>
-                  <span className="text-xs text-stone-500 font-medium">
+                  <span className="hidden xl:inline text-xs text-stone-500 font-medium">
                     {subject === 'math'
                       ? 'Chương 1 (trang 3–10): 8 hình vẽ giải thích chi tiết + thuật ngữ + LaTeX'
                       : subject === 'biology'
@@ -236,7 +237,7 @@ export function App() {
                       : 'Trang 180 – 186 (8 Hình vẽ lại SVG cao cấp & 6 Bài tập có đáp án)'}
                   </span>
                 </div>
-                <h1 className="text-base sm:text-lg font-bold text-stone-900 leading-tight mt-0.5">
+                <h1 className="text-sm sm:text-base lg:text-lg font-bold text-stone-900 leading-tight mt-0.5">
                   {subject === 'math'
                     ? 'Bản Dịch Tiếng Việt & Mã Nguồn LaTeX: John Napier, 1614 — Khởi nguồn của Logarit'
                     : subject === 'biology'
@@ -255,7 +256,7 @@ export function App() {
             </div>
 
             {/* Mode Switcher & Action Buttons */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="header-toolbar flex flex-wrap items-center gap-2">
               {/* Subject Switcher */}
               <div className="inline-flex rounded-lg bg-stone-900 p-1">
                 <button
@@ -340,7 +341,7 @@ export function App() {
 
               {/* View Mode Switcher — Hóa & Toán */}
               {subject !== 'biology' && (
-                <div className="inline-flex rounded-lg bg-stone-100 p-1 border border-stone-200">
+                <div className="inline-flex flex-wrap max-w-full rounded-lg bg-stone-100 p-1 border border-stone-200">
                   <button
                     type="button"
                     onClick={() => setViewMode('preview')}
@@ -471,7 +472,7 @@ export function App() {
 
           {/* Page Filter Bar — chỉ Hóa học */}
           {subject === 'chemistry' && viewMode !== 'latex' && viewMode !== 'study' && (
-            <div className="flex items-center gap-1.5 overflow-x-auto pt-2.5 mt-2.5 border-t border-stone-200/80 pb-0.5">
+            <div className="hidden md:flex items-center gap-1.5 overflow-x-auto pt-2.5 mt-2.5 border-t border-stone-200/80 pb-0.5">
               <span className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider mr-1 shrink-0">
                 Chuyển trang nhanh:
               </span>
@@ -761,6 +762,9 @@ export function App() {
           </div>
         </div>
       </footer>
+
+      {/* Bấm vào hình vẽ bất kỳ để xem ở cỡ lớn */}
+      <FigureZoom />
     </div>
   );
 }

@@ -59,8 +59,8 @@ export const FigureNapierPortrait: React.FC = () => (
           <circle cx="99" cy="58" r="1.7" fill="#3a332c" />
           <circle cx="111" cy="58" r="1.7" fill="#3a332c" />
           <path d="M88 84 q17 10 34 0 q6 10 -6 14 q-11 3 -22 0 q-12 -4 -6 -14 z" fill="#efe9db" stroke="#c9c2b2" strokeWidth="1" />
-          <text x="105" y="132" textAnchor="middle" fontFamily="serif" fontSize="10.5" fontStyle="italic" fill="#5a4a22">
-            John Napier (1550–1617), laird thứ 8 của Merchiston
+          <text x="105" y="131" textAnchor="middle" fontFamily="serif" fontSize="10" fontStyle="italic" fill="#5a4a22">
+            John Napier (1550–1617)
           </text>
         </g>
         {/* ký hiệu logo */}
@@ -138,7 +138,7 @@ export const FigureNapierTimeline: React.FC = () => (
 -------------------------------------------------------------------------- */
 export const FigureProsthaphaeresis: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 420 120" className="w-full" role="img" aria-label="Quy tắc prosthaphaeresis">
+    <svg viewBox="0 0 420 132" className="w-full" role="img" aria-label="Quy tắc prosthaphaeresis">
       <defs>
         <marker id="pArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
           <path d="M0,0 L10,5 L0,10 z" fill="#7a5c17" />
@@ -171,7 +171,7 @@ export const FigureProsthaphaeresis: React.FC = () => (
       <text x="310" y="98" textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#33511d">
         chỉ cần tra bảng + CỘNG
       </text>
-      <text x="76" y="106" textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
+      <text x="210" y="118" textAnchor="middle" fontFamily="sans-serif" fontSize="8.4" fill="#57534e">
         tích hai lượng giác → tổng/hiệu hai lượng giác khác
       </text>
     </svg>
@@ -222,10 +222,10 @@ export const FigureStifel: React.FC = () => (
       <path d="M195 92 Q 210 122 258 118" fill="none" stroke="#c0392b" strokeWidth="1.4" markerEnd="url(#sArrow)" />
       <path d="M231 92 Q 246 122 262 118" fill="none" stroke="#c0392b" strokeWidth="1.4" markerEnd="url(#sArrow)" />
       <path d="M303 92 Q 303 116 300 118" fill="none" stroke="#c0392b" strokeWidth="1.4" markerEnd="url(#sArrow)" />
-      <text x="150" y="138" fontFamily="monospace" fontSize="11" fill="#8c1d13">
+      <text x="40" y="138" fontFamily="monospace" fontSize="11" fill="#8c1d13">
         q² · q³ = q⁵&nbsp;&nbsp;⇔&nbsp;&nbsp;2 + 3 = 5
       </text>
-      <text x="330" y="138" fontFamily="monospace" fontSize="11" fill="#2f5a75">
+      <text x="250" y="138" fontFamily="monospace" fontSize="11" fill="#2f5a75">
         q⁵ / q³ = q²&nbsp;&nbsp;⇔&nbsp;&nbsp;5 − 3 = 2
       </text>
       <path d="M303 46 Q 340 8 372 40" fill="none" stroke="#2f5a75" strokeWidth="1.2" strokeDasharray="4 3" />
@@ -267,7 +267,7 @@ export const FigureBase2Example: React.FC = () => (
       {/* ví dụ 1: 8 x 32 */}
       <g fontFamily="monospace" fontSize="11.5" fill="#263238">
         <text x="12" y="90">VD 1: 8 × 32 → mũ 3 + 5 = 8 → tra bảng: 2⁸ = 256</text>
-        <text x="12" y="110">VD 2: 4⁵ = (2²)⁵ → mũ 2 × 5 = 10 → tra bảng: 2¹⁰ = 1024</text>
+        <text x="12" y="110">VD 2: 4⁵ = (2²)⁵ → mũ 2 × 5 = 10 → 2¹⁰ = 1024</text>
       </g>
       <rect x="330" y="76" width="120" height="42" rx="8" fill="#e8f2e0" stroke="#4c7a24" strokeWidth="1.4" />
       <text x="390" y="94" textAnchor="middle" fontFamily="sans-serif" fontSize="9" fill="#33511d">
@@ -386,7 +386,7 @@ export const FigureNapierTables: React.FC = () => (
 -------------------------------------------------------------------------- */
 export const FigureApproachE: React.FC = () => (
   <figure className="my-3 bg-white/85 p-3 rounded-md border border-stone-200/80">
-    <svg viewBox="0 0 460 140" className="w-full" role="img" aria-label="Tiệm cận 1/e">
+    <svg viewBox="0 0 460 152" className="w-full" role="img" aria-label="Tiệm cận 1/e">
       {/* trục số */}
       <line x1="30" y1="96" x2="430" y2="96" stroke="#546e7a" strokeWidth="1.6" />
       {[
@@ -416,13 +416,13 @@ export const FigureApproachE: React.FC = () => (
         e = lim (1 + 1/n)ⁿ (n → ∞)
       </text>
       <text x="348" y="50" textAnchor="middle" fontFamily="sans-serif" fontSize="8.6" fill="#2f5a75">
-        nhân vật chính của cuốn sách — xuất hiện ẩn trong bảng của Napier!
+        số e ẩn trong bảng logarithm của Napier!
       </text>
-      <text x="30" y="30" fontFamily="sans-serif" fontSize="9.5" fill="#57534e">
-        Chuẩn hóa N* = N/10⁷ và L* = L/10⁷, hệ thức N = 10⁷(1−10⁻⁷)^L trở thành N* = [(1−10⁻⁷)^10⁷]^L* —
+      <text x="20" y="134" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
+        Chuẩn hóa N* = N/10⁷, L* = L/10⁷: N = 10⁷(1−10⁻⁷)^L trở thành N* = [(1−10⁻⁷)^10⁷]^L*
       </text>
-      <text x="30" y="44" fontFamily="sans-serif" fontSize="9.5" fill="#57534e">
-        tức logarithm của Napier thực chất gần với cơ số 1/e, dù ông chưa hề có khái niệm “cơ số”.
+      <text x="20" y="146" fontFamily="sans-serif" fontSize="8.6" fill="#57534e">
+        → logarithm của Napier thực chất gần cơ số 1/e, dù ông chưa hề có khái niệm “cơ số”.
       </text>
     </svg>
     <figcaption className={CAP}>
